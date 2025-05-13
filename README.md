@@ -295,10 +295,10 @@ Cuando ocurre un error inesperado en el servidor:
 
 ## 📬 Postman Collection
 
-Se adjunta la colección de Postman para facilitar la prueba de los endpoints de la API.  
+En el repositorio podrás encontrar y descargar la colección de Postman para facilitar la prueba de los endpoints de la API.  
 Puedes importar esta colección en Postman y realizar todas las operaciones disponibles, incluyendo las rutas de usuarios, mascotas y mockeo de datos.
 
-🔗 [Descargar colección AdoptMe para Postman]((https://raw.githubusercontent.com/hmfarias/adoptme/main/AdoptMe.postman_collection.json)
+🔗 [Colección AdoptMe para Postman]((https://raw.githubusercontent.com/hmfarias/adoptme/main/AdoptMe.postman_collection.json)
 
 [Volver al menú](#top)
 
