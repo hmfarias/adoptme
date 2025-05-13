@@ -5,17 +5,15 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
 ---
 
 ## 📋 Menú
+
 - [🔐 CREDENCIALES - .env](#credenciales)
 - [🔧 Instalación](#-instalación)
-- [🚀 Ejecución](#-ejecución)
-- [📁 Estructura del proyecto](#-estructura-del-proyecto)
 - [🧪 Funcionalidad de Mocking](#-funcionalidad-de-mocking)
   - [📍 Endpoint `/api/mocks/mockingusers`](#-endpoint-apimocksmockingusers)
   - [📍 Endpoint `/api/mocks/mockingpets`](#-endpoint-apimocksmockingpets)
   - [📍 Endpoint `/api/mocks/generateData`](#-endpoint-apimocksgeneratedata)
 - [📦 Utilidades](#-utilidades)
 - [🪵 Manejo de errores](#-manejo-de-errores)
-
 
 <a name="credenciales"></a>
 
@@ -48,45 +46,62 @@ Este archivo a su vez es procesado por `/src/config/config.js`, que es quien fin
 
 ---
 
+<a name="instalacionlocal"></a>
+
 ## 🔧 Instalación
 
-```bash
-npm install
-```
+### **Prerequisitos:**
 
-Asegúrate de tener tu archivo `.env` configurado correctamente.
+Antes de instalar la aplicación, asegúrate de contar con:
 
----
+- Un editor de código como **Visual Studio Code** o similar.
+- **Node.js** y **npm** instalados en tu sistema.
 
-## 🚀 Ejecución
+### **Pasos para la instalación:**
 
-```bash
-npm run dev
-```
+1. **Ubicar el directorio de instalación:**  
+   En tu terminal o consola, navega hasta la carpeta donde deseas instalar la aplicación.
 
----
+2. **Clonar el repositorio:**  
+   Ejecuta el siguiente comando para clonar el proyecto:
 
-## 📁 Estructura del proyecto
+   ```
+     git clone https://github.com/hmfarias/adoptme.git
+   ```
 
-```
-src/
-├── controllers/
-│   └── mocks.controller.js
-├── dao/
-│   ├── Users.dao.js
-│   └── Pets.dao.js
-├── dto/
-│   └── Pet.dto.js
-├── repository/
-│   ├── UserRepository.js
-│   └── PetRepository.js
-├── routers/
-│   └── mocks.router.js
-├── services/
-│   └── index.js
-├── utils.js
-└── ...
-```
+   Esto creará una carpeta llamada "adoptme" con todos los archivos de la aplicación.
+
+3. **Abrir el proyecto en el editor de código:**
+   Abre Visual Studio Code (o tu editor de preferencia) y selecciona la carpeta "adoptme".
+
+4. **Abrir una terminal en la carpeta del proyecto:**
+   Asegúrate de estar ubicado dentro de la carpeta "adoptme" en la terminal.
+
+5. **Instalar las dependencias:**
+
+   Ejecuta el siguiente comando para instalar las dependencias del proyecto:
+
+   ```
+   npm install
+   ```
+
+6. **Configurar las variables de entorno:**
+   Crea un archivo .env en la raíz del proyecto con la configuración de las credenciales (ver sección CREDENCIALES (.env)).
+   Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).
+7. **Iniciar la aplicación en modo desarrollador:**
+   Ejecuta el siguiente comando:
+
+   ```
+   npm run dev
+   o bien:
+   node src/app.js
+   ```
+
+   Esto iniciará el servidor y mostrará un mensaje en la terminal indicando que la aplicación está corriendo en el puerto 8080 y conectada a la base de datos.
+
+✅ ¡Listo! Ya puedes explorar y probar la aplicación en tu entorno local. 🚀
+
+[Volver al menú](#top)
 
 ---
 
@@ -94,58 +109,60 @@ src/
 
 Este sistema permite generar datos falsos para pruebas o poblar la base de datos en desarrollo.
 
-### 📍 Endpoint `/api/mocks/mockingusers`
+### 📍 Endpoint `/api/mocks/mockingusers/:quantity`
 
 **Método:** `GET`
 
-**Descripción:** Genera 50 usuarios falsos con las siguientes características:
+**Descripción:** Genera usuarios falsos de acuerdo a la catidad recibida por query param "quantity", con las siguientes características:
 
 - `password` es siempre `"coder123"` (encriptada).
 - `role`: `"user"` o `"admin"`.
 - `pets`: array vacío.
 
 **Ejemplo de respuesta:**
+
 ```json
 {
-  "status": "success",
-  "payload": [
-    {
-      "first_name": "Laura",
-      "last_name": "Meier",
-      "email": "laura.meier@example.com",
-      "password": "$2b$10$...",
-      "role": "user",
-      "pets": []
-    }
-  ]
+	"status": "success",
+	"payload": [
+		{
+			"first_name": "Laura",
+			"last_name": "Meier",
+			"email": "laura.meier@example.com",
+			"password": "$2b$10$...",
+			"role": "user",
+			"pets": []
+		}
+	]
 }
 ```
 
 ---
 
-### 📍 Endpoint `/api/mocks/mockingpets`
+### 📍 Endpoint `/api/mocks/mockingpets/:quantity`
 
 **Método:** `GET`
 
-**Descripción:** Genera 100 mascotas falsas con los siguientes campos:
+**Descripción:** Genera mascotas falsas de acuerdo a la cantidad recibida por query param "quantity", con los siguientes campos:
 
 - `name`, `specie`, `birthDate`, `image`
 - `adopted`: siempre `false`
 - No incluye `owner`
 
 **Ejemplo de respuesta:**
+
 ```json
 {
-  "status": "success",
-  "payload": [
-    {
-      "name": "Milo",
-      "specie": "dog",
-      "birthDate": "2018-04-21T00:00:00.000Z",
-      "adopted": false,
-      "image": "https://picsum.photos/id/23/400/400"
-    }
-  ]
+	"status": "success",
+	"payload": [
+		{
+			"name": "Milo",
+			"specie": "dog",
+			"birthDate": "2018-04-21T00:00:00.000Z",
+			"adopted": false,
+			"image": "https://picsum.photos/id/23/400/400"
+		}
+	]
 }
 ```
 
@@ -158,23 +175,27 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 **Ruta:** `/api/mocks/generateData`
 
 **Parámetros:**
+
 ```json
 {
-  "users": 10,
-  "pets": 20
+	"users": 10,
+	"pets": 20
 }
 ```
 
 **Descripción:** Inserta directamente en la base de datos la cantidad de usuarios y mascotas especificados.
 
 **Respuesta:**
+
 ```json
 {
-  "status": "success",
-  "usersCreated": 10,
-  "petsCreated": 20
+	"status": "success",
+	"usersCreated": 10,
+	"petsCreated": 20
 }
 ```
+
+[Volver al menú](#top)
 
 ---
 
@@ -197,3 +218,5 @@ El sistema utiliza un logger diario en `src/logs/AAAA-MM-DD.log` para registrar 
 ## 📫 Contacto
 
 ¿Dudas o sugerencias? No dudes en abrir un issue o contactarme directamente.
+
+[Volver al menú](#top)
