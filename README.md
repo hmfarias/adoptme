@@ -293,7 +293,7 @@ Cuando ocurre un error inesperado en el servidor:
 ---
 <a name="postman"></a>
 
-### 📬 Postman Collection ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png)
+### ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png) Postman Collection 
 
 En el repositorio podrás encontrar la colección de Postman para facilitar la prueba de los endpoints de la API.  
 Puedes importar esta colección en Postman y realizar todas las operaciones disponibles, incluyendo las rutas de usuarios, mascotas y mockeo de datos.
