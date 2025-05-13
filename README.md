@@ -5,7 +5,7 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
 ---
 
 ## 📋 Menú
-
+- [🔐 CREDENCIALES - .env](#credenciales)
 - [🔧 Instalación](#-instalación)
 - [🚀 Ejecución](#-ejecución)
 - [📁 Estructura del proyecto](#-estructura-del-proyecto)
@@ -15,6 +15,36 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
   - [📍 Endpoint `/api/mocks/generateData`](#-endpoint-apimocksgeneratedata)
 - [📦 Utilidades](#-utilidades)
 - [🪵 Manejo de errores](#-manejo-de-errores)
+
+
+<a name="credenciales"></a>
+
+## 🔐 CREDENCIALES (archivo .env)
+
+Antes de ejecutar la aplicación, es necesario crear un archivo .env en la carpeta raíz (donde se encuentra el package.json). Este archivo almacenará las variables de entorno necesarias para la configuración del servidor y la conexión a la base de datos. CON FINES DIDÁCTICOS SE DETALLA SU CONTENIDO PARA PODER PROBAR LA APLICACIÓN.
+
+### 🟢 Contenido que debe tener el archivo .env:
+
+```
+/**
+* Environment variables
+*/
+# Server Configuration
+PORT=8080
+
+SECRET_KEY="X9v$3jK@pLm7!zQwT2"
+
+# Database Configuration
+DB_USER=hmfarias
+DB_PASSWORD=QQATDs4SdAAWYa23
+DB_HOST=cluster0.fergg.mongodb.net
+APP_NAME=Cluster0
+DB_NAME=backendII
+```
+
+Este archivo a su vez es procesado por `/src/config/config.js`, que es quien finalmente se encarga de cargar las variables de entorno y configurar los valores necesarios para el funcionamiento de la aplicación, como el puerto del servidor y la conexión a la base de datos.
+
+[Volver al menú](#top)
 
 ---
 
