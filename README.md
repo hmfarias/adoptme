@@ -291,6 +291,8 @@ Cuando ocurre un error inesperado en el servidor:
 [Volver al menú](#top)
 
 ---
+<a name="postman"></a>
+
 ## 📬 Postman Collection
 
 Se adjunta la colección de Postman para facilitar la prueba de los endpoints de la API.  
