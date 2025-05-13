@@ -15,6 +15,7 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
   - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
 - [📦 Utilidades](#-utilidades)
 - 🛑 [Manejo de errores inesperados - LOG](#erroresinesperados)
+- 📬 [Postman Collection para hacer las pruebas](#postman)
 
 <a name="credenciales"></a>
 
@@ -286,6 +287,16 @@ Cuando ocurre un error inesperado en el servidor:
 - Facilita la depuración: el desarrollador accede a logs completos para analizar.
 - Escalabilidad: permite integrar fácilmente herramientas como Winston, Sentry, etc.
 - Automatización: la creación de carpetas y archivos de log es automática.
+
+[Volver al menú](#top)
+
+---
+## 📬 Postman Collection
+
+Se adjunta la colección de Postman para facilitar la prueba de los endpoints de la API.  
+Puedes importar esta colección en Postman y realizar todas las operaciones disponibles, incluyendo las rutas de usuarios, mascotas y mockeo de datos.
+
+🔗 [Descargar colección AdoptMe para Postman](https://github.com/hmfarias/adoptme/blob/main/AdoptMe.postman_collection.json)
 
 [Volver al menú](#top)
 
