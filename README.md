@@ -215,7 +215,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 **Ruta:** `/api/mocks/generateData`
 
-**Parámetros:**
+**Parámetros (por body):**
 
 ```json
 {
@@ -224,7 +224,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
-**Descripción:** Inserta directamente en la base de datos la cantidad de usuarios y mascotas especificados.
+**Descripción:** Inserta directamente en la base de datos la cantidad de usuarios y mascotas especificados por body.
 
 **Respuesta:**
 
