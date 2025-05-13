@@ -8,12 +8,13 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
 
 - [🔐 CREDENCIALES - .env](#credenciales)
 - [🔧 Instalación](#-instalación)
+- ⚙️ [Configuración del Puerto desde Línea de Comandos](#comander)
 - [🧪 Funcionalidad de Mocking](#-funcionalidad-de-mocking)
   - [📍 Endpoint `/api/mocks/mockingusers`](#endpoint-apimocksmockingusers)
   - [📍 Endpoint `/api/mocks/mockingpets`](#endpoint-apimocksmockingpets)
   - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
 - [📦 Utilidades](#-utilidades)
-- [🪵 Manejo de errores](#-manejo-de-errores)
+- 🛑 [Manejo de errores inesperados - LOG](#erroresinesperados)
 
 <a name="credenciales"></a>
 
@@ -105,9 +106,38 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 ---
 
+<a name="comander"></a>
+
+## ⚙️ Configuración del Puerto desde Línea de ComandosL
+
+La aplicación permite establecer el puerto en el que se ejecuta el servidor de forma dinámica a través de la línea de comandos, gracias al uso de la librería **commander**.
+
+🛠️ Prioridad de asignación del puerto:
+
+1. Parámetro pasado por CLI → node src/app.js --port 4000
+2. Variable de entorno .env → PORT= 8080
+3. Valor por defecto → 8080
+
+```
+# Usando la opción larga
+node src/app.js --port 4000
+o bien:
+npm run dev -- --port 4000
+
+# Usando la opción corta
+node src/app.js -p 4000
+o bien:
+npm run dev -- -p 4000
+```
+
+Esto brinda flexibilidad al momento de desplegar o testear la aplicación en distintos entornos o puertos, sin necesidad de modificar archivos de configuración.
+
+[Volver al menú](#top)
+
 ## 🧪 Funcionalidad de Mocking
 
 Este sistema permite generar datos falsos para pruebas o poblar la base de datos en desarrollo.
+[Volver al menú](#top)
 
 <a name="endpoint-apimocksmockingusers"></a>
 
@@ -139,6 +169,8 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
+[Volver al menú](#top)
+
 ---
 
 <a name="endpoint-apimocksmockingpets"></a>
@@ -169,6 +201,8 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 	]
 }
 ```
+
+[Volver al menú](#top)
 
 ---
 
@@ -213,11 +247,47 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 - `generateFakePet()`  
   Usa Faker para crear mascotas con datos realistas.
 
+[Volver al menú](#top)
+
 ---
 
-## 🪵 Manejo de errores
+<a name="erroresinesperados"></a>
 
-El sistema utiliza un logger diario en `src/logs/AAAA-MM-DD.log` para registrar errores del servidor con `timestamp`, `mensaje`, y `stack`.
+### 🛑 Manejo de Errores Inesperados
+
+La aplicación implementa un **sistema de captura, registro y respuesta** ante **errores no controlados** que puedan surgir en tiempo de ejecución.
+
+Cuando ocurre un error inesperado en el servidor:
+
+| Componente                      | Descripción                                                                                                                                                                   |
+| :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📋 **Registro de error**        | Se crea automáticamente un archivo `.log` en la carpeta `logs/` dentro del proyecto. Cada día se genera un archivo nuevo con la fecha como nombre (`YYYY-MM-DD.log`).         |
+| 🗂️ **Formato del log**          | Cada error registrado contiene:<br>• `timestamp`: fecha y hora exacta<br>• `message`: mensaje del error<br>• `stack`: traza de pila completa del error para diagnóstico       |
+| 📂 **Gestión de carpeta logs/** | Si la carpeta `logs/` no existe, se crea automáticamente.                                                                                                                     |
+| 📡 **Respuesta al cliente**     | El servidor responde con un `status 500` y un mensaje estándar: <br> `"Unexpected server error - Try later or contact your administrator"`, sin exponer información sensible. |
+
+---
+
+#### 📜 Ejemplo de un error registrado:
+
+```json
+[
+	{
+		"timestamp": "2025-04-28T19:45:31.920Z",
+		"message": "Cannot read properties of undefined (reading 'cart')",
+		"stack": "TypeError: Cannot read properties of undefined (reading 'cart')\n    at ..."
+	}
+]
+```
+
+🚨 **Beneficios de esta estrategia**
+
+- Protección de la aplicación: el usuario nunca ve detalles sensibles del error.
+- Facilita la depuración: el desarrollador accede a logs completos para analizar.
+- Escalabilidad: permite integrar fácilmente herramientas como Winston, Sentry, etc.
+- Automatización: la creación de carpetas y archivos de log es automática.
+
+[Volver al menú](#top)
 
 ---
 
