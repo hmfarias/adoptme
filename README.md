@@ -39,7 +39,7 @@ DB_USER=hmfarias
 DB_PASSWORD=QQATDs4SdAAWYa23
 DB_HOST=cluster0.fergg.mongodb.net
 APP_NAME=Cluster0
-DB_NAME=backendII
+DB_NAME=backendIII
 ```
 
 Este archivo a su vez es procesado por `/src/config/config.js`, que es quien finalmente se encarga de cargar las variables de entorno y configurar los valores necesarios para el funcionamiento de la aplicación, como el puerto del servidor y la conexión a la base de datos.
