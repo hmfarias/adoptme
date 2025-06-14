@@ -292,11 +292,11 @@ node src/app.js --port 5000 --mode production
 node src/app.js -p 5000 --mode development
 ```
 
-#### Con npm scripts (se pasa después de --)
+#### Con npm scripts
 
 ```bash
-npm run dev -- --port 5000 --mode development
-npm start -- --port 8081 --mode production
+npm run dev -> modo development en puerto 8080
+npm run prod -> modo production en puerto 8080
 ```
 
 ### 🧩 Scripts configurados en package.json
