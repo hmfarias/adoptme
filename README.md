@@ -6,10 +6,10 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
 
 ## 📋 Menú
 
-- [🔍 Revisión del Código](#revisión-del-código)
+- [🔍 Revisión del Código](#revision-del-codigo)
   - [📚 Estandarización de nombres de archivo](#nombres-de-archivos)
   - [⚠️ Control de errores (try/catch)](#control-de-errores)
-  - [📌 Métodos sin implementar](#métodos-sin-implementar)
+  - [📌 Métodos sin implementar](#metodos-sin-implementar)
 - [🔐 CREDENCIALES - .env](#credenciales)
 - [🔧 Instalación](#-instalación)
 - ⚙️ [Configuración del Puerto y Entorno desde Línea de Comandos](#comander)
@@ -24,7 +24,7 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
 
 ---
 
-<a name="nombres-de-archivos"></a>
+<a name="revision-del-codigo"></a>
 
 ## 🔍 Revisión del código
 
