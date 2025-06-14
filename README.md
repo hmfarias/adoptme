@@ -251,29 +251,71 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 <a name="comander"></a>
 
-## ⚙️ Configuración del Puerto desde Línea de ComandosL
+## ⚙️ Configuración del Puerto y del Entorno desde Línea de Comandos
 
-La aplicación permite establecer el puerto en el que se ejecuta el servidor de forma dinámica a través de la línea de comandos, gracias al uso de la librería **commander**.
+La aplicación permite establecer de forma dinámica tanto el **puerto de ejecución** como el **modo (`development` o `production`)** a través de la línea de comandos, utilizando la librería [Commander](https://github.com/tj/commander.js).
 
-🛠️ Prioridad de asignación del puerto:
+Gracias a esta implementación, es posible ejecutar la aplicación con distintas configuraciones sin necesidad de modificar archivos.
 
-1. Parámetro pasado por CLI → node src/app.js --port 4000
-2. Variable de entorno .env → PORT= 8080
-3. Valor por defecto → 8080
+### 🛠️ Prioridad de resolución para cada configuración
 
-```
-# Usando la opción larga
+| Configuración | Prioridad de uso                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| `PORT`        | 1. Línea de comandos `--port` o `-p`<br>2. Variable de entorno `.env`<br>3. Valor por defecto: `8080` |
+| `NODE_ENV`    | 1. Línea de comandos `--mode`<br>2. Variable de entorno `.env`<br>3. Valor por defecto: `development` |
+
+---
+
+### 🧪 Ejemplos de uso
+
+#### Puerto personalizado con entorno por defecto (development)
+
+```bash
 node src/app.js --port 4000
-o bien:
-npm run dev -- --port 4000
-
-# Usando la opción corta
-node src/app.js -p 4000
-o bien:
-npm run dev -- -p 4000
 ```
 
-Esto brinda flexibilidad al momento de desplegar o testear la aplicación en distintos entornos o puertos, sin necesidad de modificar archivos de configuración.
+#### Entorno production con puerto por defecto (8080)
+
+```bash
+node src/app.js --mode production
+```
+
+#### Ambos definidos explícitamente
+
+```bash
+node src/app.js --port 5000 --mode production
+```
+
+#### Usando alias corto para el puerto
+
+```bash
+node src/app.js -p 5000 --mode development
+```
+
+#### Con npm scripts (se pasa después de --)
+
+```bash
+npm run dev -- --port 5000 --mode development
+npm start -- --port 8081 --mode production
+```
+
+### 🧩 Scripts configurados en package.json
+
+```json
+"scripts": {
+	"start": "node src/app.js",
+	"dev": "nodemon",
+	"prod": "node src/app.js --mode production",
+	"test": "mocha test/supertest.test.js"
+}
+```
+
+### ✅ Resultado
+
+✔ Flexibilidad total para definir entorno y puerto
+✔ Ideal para entornos de desarrollo, testing o producción
+✔ Compatible con .env y CLI
+✔ El logger y otras funcionalidades sensibles al entorno se adaptan automáticamente.
 
 [Volver al menú](#top)
 
