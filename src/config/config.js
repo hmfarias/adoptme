@@ -11,7 +11,8 @@ dotenv.config({ path: path.resolve(__dirname, '../.env'), override: true }); // 
 const program = new Command();
 
 program
-	.option('-p, --port <port>', 'Set the server port') // Optional command-line argument
+	.option('-p, --port <port>', 'Set the server port')
+	.option('--mode <mode>', 'Set the mode of the app (development or production)')
 	.parse(process.argv);
 
 // Get the CLI options
@@ -20,7 +21,8 @@ const options = program.opts();
 // Fallback priority: CLI > .env > 3000
 export const config = {
 	PORT: options.port || process.env.PORT || 8080,
-	DB_NAME: process.env.DB_NAME,
+	DB_NAME: process.env.DB_NAME || 'backendIII ',
+	NODE_ENV: options.mode || process.env.NODE_ENV || 'development',
 	MONGODB_URI: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority&appName=${process.env.APP_NAME}`,
 	SECRET_KEY: process.env.SECRET_KEY,
 	GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,

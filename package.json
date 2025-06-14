@@ -6,7 +6,8 @@
 	"type": "module",
 	"scripts": {
 		"start": "node src/app.js",
-		"dev": "node --watch src/app.js",
+		"dev": "nodemon",
+		"prod": "node src/app.js --mode production",
 		"test": "mocha test/supertest.test.js"
 	},
 	"keywords": [],
@@ -22,10 +23,14 @@
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^8.13.1",
 		"multer": "^1.4.5-lts.1",
-		"supertest": "^6.3.3"
+		"supertest": "^6.3.3",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.1",
+		"winston": "^3.17.0"
 	},
 	"devDependencies": {
 		"chai": "^4.3.7",
-		"mocha": "^10.1.0"
+		"mocha": "^10.1.0",
+		"nodemon": "^3.1.10"
 	}
 }
