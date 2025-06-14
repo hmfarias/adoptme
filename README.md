@@ -157,7 +157,9 @@ const deleteUser = async (req, res) => {
 };
 ```
 
-## [Volver al menú](#top)
+[Volver al menú](#top)
+
+---
 
 <a name="credenciales"></a>
 
@@ -268,6 +270,26 @@ Gracias a esta implementación, es posible ejecutar la aplicación con distintas
 
 ### 🧪 Ejemplos de uso
 
+#### 🧩 Scripts configurados en package.json
+
+```json
+"scripts": {
+	"start": "node src/app.js",
+	"dev": "nodemon",
+	"prod": "node src/app.js --mode production",
+	"test": "mocha test/supertest.test.js"
+}
+```
+
+#### Con npm scripts
+
+```bash
+npm run dev -> modo development en puerto 8080
+npm run prod -> modo production en puerto 8080
+```
+
+O bien:
+
 #### Puerto personalizado con entorno por defecto (development)
 
 ```bash
@@ -290,24 +312,6 @@ node src/app.js --port 5000 --mode production
 
 ```bash
 node src/app.js -p 5000 --mode development
-```
-
-#### Con npm scripts
-
-```bash
-npm run dev -> modo development en puerto 8080
-npm run prod -> modo production en puerto 8080
-```
-
-### 🧩 Scripts configurados en package.json
-
-```json
-"scripts": {
-	"start": "node src/app.js",
-	"dev": "nodemon",
-	"prod": "node src/app.js --mode production",
-	"test": "mocha test/supertest.test.js"
-}
 ```
 
 ### ✅ Resultado
