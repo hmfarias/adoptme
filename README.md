@@ -3,6 +3,7 @@
 <p align="center">
   <img src="https://github.com/hmfarias/adoptme/blob/main/src/public/img/banner.png" width="600"/>
 </p>
+
 ---
 
 ## 📋 Menú
