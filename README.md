@@ -6,7 +6,7 @@
 
 ---
 
-## [📋 Menú](#top)
+## [📋 Menú](#menu)
 
 - [🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas](#intro)
 - [🔍 Revisión del Código](#revision-del-codigo)
@@ -45,7 +45,7 @@ Incluye además:
 
 Este repositorio está listo para desarrollo, testing, o despliegue en producción.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -98,7 +98,7 @@ Clases exportadas: ( en algunos casos estaban en singular y otros en plural y no
 
 - Se adaptaron las importaciones en base a los cambios de nombre realizados.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -142,7 +142,7 @@ const getAdoption = async (req, res) => {
 };
 ```
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -182,7 +182,7 @@ const deleteUser = async (req, res) => {
 };
 ```
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -212,7 +212,7 @@ DB_NAME=backendIII  # Target database name
 
 Este archivo a su vez es procesado por `/src/config/config.js`, que es el módulo que finalmente se encarga de cargar las variables de entorno y configurar los valores necesarios para el funcionamiento de la aplicación, como el puerto del servidor y la conexión a la base de datos.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -271,7 +271,7 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 ✅ ¡Listo! Ya puedes explorar y probar la aplicación en tu entorno local. 🚀
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -345,7 +345,7 @@ node src/app.js -p 5000 --mode development
 ✔ Compatible con .env y CLI
 ✔ El logger y otras funcionalidades sensibles al entorno se adaptan automáticamente.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -456,7 +456,7 @@ if (!user) {
 ✔ Captura global de fallos
 ✔ Mejora de mantenimiento y depuración
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -496,7 +496,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -529,7 +529,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -562,7 +562,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -574,7 +574,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 - `generateFakePet()`  
   Usa Faker para crear mascotas con datos realistas.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -590,7 +590,7 @@ Puedes importar esta colección en Postman y realizar todas las operaciones disp
 📥 **Para descargar:**  
 Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o presiona `Ctrl + S` en el navegador.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
 
 ---
 
@@ -598,4 +598,4 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 
 ¿Dudas o sugerencias? No dudes en abrir un issue o contactarme directamente.
 
-[Volver al menú](#top)
+[Volver al menú](#menu)
