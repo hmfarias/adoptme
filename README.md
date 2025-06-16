@@ -6,6 +6,7 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
 
 ## 📋 Menú
 
+- [🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas](#intro)
 - [🔍 Revisión del Código](#revision-del-codigo)
   - [📚 Estandarización de nombres de archivo](#nombres-de-archivos)
   - [⚠️ Control de errores (try/catch)](#control-de-errores)
@@ -19,8 +20,32 @@ Este proyecto es un backend para gestionar usuarios y mascotas, con funcionalida
   - [📍 Endpoint `/api/mocks/mockingpets`](#endpoint-apimocksmockingpets)
   - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
 - [📦 Utilidades](#-utilidades)
-- 🛑 [Manejo de errores inesperados - LOG](#erroresinesperados)
 - 📬 [Postman Collection para hacer las pruebas](#postman)
+
+---
+
+<a name="revision-del-codigo"></a>
+
+## 🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas
+
+![AdoptMe Banner](https://github.com/hmfarias/adoptme/blob/main/assets/banner.png)
+
+AdoptMe es una aplicación backend desarrollada con **Node.js**, **Express** y **MongoDB**, diseñada para gestionar un sistema completo de **adopción de mascotas**. Ofrece endpoints RESTful para la administración de usuarios, mascotas y adopciones, así como funcionalidades de autenticación, mocking de datos con `faker`, manejo de sesiones, testing, documentación con Swagger, y un sistema de logging profesional con Winston.
+
+Este backend forma parte de una arquitectura en capas bien definida (`models`, `dao`, `repository`, `service`, `dto`, `controllers`, `routes`) que facilita la escalabilidad, el mantenimiento y la reutilización de código.
+
+Incluye además:
+
+- Carga de imágenes de mascotas con Multer 🐶
+- Generación de usuarios y mascotas falsas con Faker 🧪
+- Modo de ejecución configurable (`development` o `production`) ⚙️
+- Logger centralizado con distintos niveles y archivo persistente de errores 📄
+- Testeos automatizados con Supertest y Mocha 🧪
+- Documentación Swagger accesible vía `/api/docs` 📘
+
+Este repositorio está listo para desarrollo, testing, o despliegue en producción.
+
+[Volver al menú](#top)
 
 ---
 
@@ -549,46 +574,6 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 - `generateFakePet()`  
   Usa Faker para crear mascotas con datos realistas.
-
-[Volver al menú](#top)
-
----
-
-<a name="erroresinesperados"></a>
-
-### 🛑 Manejo de Errores Inesperados
-
-La aplicación implementa un **sistema de captura, registro y respuesta** ante **errores no controlados** que puedan surgir en tiempo de ejecución.
-
-Cuando ocurre un error inesperado en el servidor:
-
-| Componente                      | Descripción                                                                                                                                                                   |
-| :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 📋 **Registro de error**        | Se crea automáticamente un archivo `.log` en la carpeta `logs/` dentro del proyecto. Cada día se genera un archivo nuevo con la fecha como nombre (`YYYY-MM-DD.log`).         |
-| 🗂️ **Formato del log**          | Cada error registrado contiene:<br>• `timestamp`: fecha y hora exacta<br>• `message`: mensaje del error<br>• `stack`: traza de pila completa del error para diagnóstico       |
-| 📂 **Gestión de carpeta logs/** | Si la carpeta `logs/` no existe, se crea automáticamente.                                                                                                                     |
-| 📡 **Respuesta al cliente**     | El servidor responde con un `status 500` y un mensaje estándar: <br> `"Unexpected server error - Try later or contact your administrator"`, sin exponer información sensible. |
-
----
-
-#### 📜 Ejemplo de un error registrado:
-
-```json
-[
-	{
-		"timestamp": "2025-04-28T19:45:31.920Z",
-		"message": "Cannot read properties of undefined (reading 'cart')",
-		"stack": "TypeError: Cannot read properties of undefined (reading 'cart')\n    at ..."
-	}
-]
-```
-
-🚨 **Beneficios de esta estrategia**
-
-- Protección de la aplicación: el usuario nunca ve detalles sensibles del error.
-- Facilita la depuración: el desarrollador accede a logs completos para analizar.
-- Escalabilidad: permite integrar fácilmente herramientas como Winston, Sentry, etc.
-- Automatización: la creación de carpetas y archivos de log es automática.
 
 [Volver al menú](#top)
 
