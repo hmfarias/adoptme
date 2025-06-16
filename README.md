@@ -24,7 +24,8 @@
   - [📍 Endpoint `/api/mocks/mockingpets`](#endpoint-apimocksmockingpets)
   - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
 - [📦 Utilidades](#-utilidades)
-- 📬 [Postman Collection para hacer las pruebas](#postman)
+- [🟠 Postman Collection para hacer las pruebas](#postman)
+- [📞 Contacto](#contacto)
 
 ---
 
@@ -474,7 +475,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 **Método:** `GET`
 
-**Descripción:** Genera usuarios falsos de acuerdo a la catidad recibida por query param "quantity", con las siguientes características:
+**Descripción:** Genera usuarios falsos (no los inserta en la BD) de acuerdo a la cantidad recibida por query param "quantity", con las siguientes características:
 
 - `password` es siempre `"coder123"` (encriptada).
 - `role`: `"user"` o `"admin"`.
@@ -508,7 +509,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 **Método:** `GET`
 
-**Descripción:** Genera mascotas falsas de acuerdo a la cantidad recibida por query param "quantity", con los siguientes campos:
+**Descripción:** Genera mascotas falsas (no las inserta en la BD) de acuerdo a la cantidad recibida por query param "quantity", con los siguientes campos:
 
 - `name`, `specie`, `birthDate`, `image`
 - `adopted`: siempre `false`
@@ -568,18 +569,6 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 ---
 
-## 📦 Utilidades
-
-- `generateFakeUser()`  
-  Usa Faker + bcrypt para generar un usuario falso con contraseña encriptada.
-
-- `generateFakePet()`  
-  Usa Faker para crear mascotas con datos realistas.
-
-[Volver al menú](#menu)
-
----
-
 <a name="postman"></a>
 
 ### ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png) Postman Collection
@@ -596,7 +585,14 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 
 ---
 
+<a name="contacto"></a>
+
 ## 📫 Contacto
+
+**Marcelo Farias**  
+📱 +54 9 351 260 1888  
+📧 hmfarias7@gmail.com  
+💼 [LinkedIn - Marcelo Farias](https://www.linkedin.com/in/hugo-marcelo-farias/)
 
 ¿Dudas o sugerencias? No dudes en abrir un issue o contactarme directamente.
 
