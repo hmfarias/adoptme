@@ -26,7 +26,7 @@
 
 ---
 
-<a name="revision-del-codigo"></a>
+<a name="intro"></a>
 
 ## 🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas
 
