@@ -1,5 +1,8 @@
 # 🐾 AdoptMe Backend
 
+<p align="center">
+  <img src="https://github.com/hmfarias/adoptme/blob/main/src/public/img/banner.png" width="600"/>
+</p>
 ---
 
 ## 📋 Menú
@@ -25,10 +28,6 @@
 <a name="revision-del-codigo"></a>
 
 ## 🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas
-
-<p align="center">
-  <img src="https://github.com/hmfarias/adoptme/blob/main/src/public/img/banner.png" width="600"/>
-</p>
 
 AdoptMe es una aplicación backend desarrollada con **Node.js**, **Express** y **MongoDB**, diseñada para gestionar un sistema completo de **adopción de mascotas**. Ofrece endpoints RESTful para la administración de usuarios, mascotas y adopciones, así como funcionalidades de autenticación, mocking de datos con `faker`, manejo de sesiones, testing, documentación con Swagger, y un sistema de logging profesional con Winston.
 
