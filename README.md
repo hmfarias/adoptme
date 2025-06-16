@@ -6,7 +6,7 @@
 
 ---
 
-## [📋 Menú](#menu)
+## [Menú](#menu)
 
 - [🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas](#intro)
 - [🔍 Revisión del Código](#revision-del-codigo)
@@ -45,7 +45,7 @@ Incluye además:
 
 Este repositorio está listo para desarrollo, testing, o despliegue en producción.
 
-[Volver al menú](#menu)
+[Volver al menú](#-menu)
 
 ---
 
