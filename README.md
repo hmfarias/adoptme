@@ -26,7 +26,7 @@
   - [📍 Endpoint `/api/mocks/mockingusers`](#endpoint-apimocksmockingusers)
   - [📍 Endpoint `/api/mocks/mockingpets`](#endpoint-apimocksmockingpets)
   - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
-- [📦 Utilidades](#-utilidades)
+- [📘 Documentación de la API - Swagger](#swagger)
 - [🟠 Postman Collection para hacer las pruebas](#postman)
 - [📞 Contacto](#contacto)
 
@@ -653,6 +653,33 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 	"petsCreated": 20
 }
 ```
+
+[Volver al menú](#menu)
+
+---
+
+<a name="swagger"></a>
+
+### 📘 Documentación de la API - Swagger
+
+La API cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0). Esta documentación incluye detalles completos de cada recurso: users, pets, adoptions, sessions, mocks, entre otros.
+
+#### ✅ Características destacadas:
+
+- Documentación dividida por módulos en archivos YAML (users.yaml, pets.yaml, sessions.yaml, etc.)
+- Esquemas reutilizables definidos en components.yaml (errores comunes, respuestas genéricas)
+- Manejo de errores bien tipificados (400, 404, 422, 500, etc.)
+- Generación de datos falsos para pruebas desde endpoints /mockingusers, /mockingpets, /generateData
+
+#### 📍 Acceso
+
+Una vez que la app está en ejecución, se accede a la documentación de la API a través de la siguiente URL:
+
+```
+http://localhost:[PORT]/api/docs
+```
+
+Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutando la aplicación.
 
 [Volver al menú](#menu)
 
