@@ -63,5 +63,9 @@ try {
 
 app.use((err, req, res, next) => {
 	req.logger?.error(`Global Express error handler: ${err.message}`, { stack: err.stack });
-	res.status(500).send({ status: 'error', message: 'Internal server error' });
+	res.status(500).json({
+		error: true,
+		message: 'Unexpected server error - Try later or contact your administrator',
+		payload: null,
+	});
 });

@@ -6,56 +6,11 @@ paths:
       summary: Get all pets
       responses:
         '200':
-          description: List of all pets
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Pets retrieved sucessfully
-                  payload:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Pet'
+          $ref: '#/components/responses/PetsRetrieved'
         '404':
-          description: Pets not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Pets not found
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/NotFound'
         '500':
-          description: Unexpected server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Unexpected server error - Try later or contact your administrator
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/InternalServerError'
 
     post:
       tags:
@@ -67,89 +22,16 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - name
-                - specie
-                - birthDate
-              properties:
-                name:
-                  type: string
-                  example: Luna
-                specie:
-                  type: string
-                  example: cat
-                birthDate:
-                  type: string
-                  format: date
-                  example: 2022-04-01
+              $ref: '#/components/schemas/PetInput'
       responses:
         '200':
-          description: Pet created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Pet created successfully
-                  payload:
-                    $ref: '#/components/schemas/Pet'
+          $ref: '#/components/responses/PetCreated'
         '400':
-          description: Incomplete values
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Incomplete values
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
-        '404':
-          description: Pet not created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Pet not created
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/CouldNotBeCreated'
         '500':
-          description: Unexpected server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Unexpected server error - Try later or contact your administrator
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/InternalServerError'
 
   /api/pets/withimage:
     post:
@@ -162,126 +44,51 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Max
-                specie:
-                  type: string
-                  example: dog
-                birthDate:
-                  type: string
-                  format: date
-                  example: 2020-06-15
-                image:
-                  type: string
-                  format: binary
-                  description: Image file of the pet to be uploaded
+              $ref: '#/components/schemas/PetWithImageInput'
       responses:
         '200':
-          description: Pet created successfully with image uploaded
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Pet created successfully
-                  payload:
-                    type: object
-                    properties:
-                      _id:
-                        type: string
-                        example: 605c72ef1532072b183af7f1
-                      name:
-                        type: string
-                        example: Max
-                      specie:
-                        type: string
-                        example: dog
-                      birthDate:
-                        type: string
-                        format: date
-                        example: 2020-06-15
-                      adopted:
-                        type: boolean
-                        example: false
-                      owner:
-                        type: string
-                        example: 663eb7c6a417b2be22555a88
-                      image:
-                        type: string
-                        example: /public/img/max.jpg
+          $ref: '#/components/responses/PetCreated'
         '400':
-          description: Incomplete values or invalid input
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Incomplete values
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
-        '404':
-          description: Pet not created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Pet not created
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/CouldNotBeCreated'
         '500':
-          description: Unexpected server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Unexpected server error - Try later or contact your administrator
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/InternalServerError'
 
   /api/pets/{pid}:
+    get:
+      summary: Retrieve a pet by ID
+      tags:
+        - Pets
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          description: The ID of the pet to retrieve
+          schema:
+            type: string
+            example: '684ae0d443986cebb325e0c1'
+      responses:
+        '200':
+          $ref: '#/components/responses/PetRetrieved'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
     put:
       tags:
         - Pets
       summary: Update an existing pet
       description: Updates a pet using its ID.
       parameters:
-        - name: pid
-          in: path
+        - in: path
+          name: pid
           required: true
+          description: The ID of the pet to retrieve
           schema:
             type: string
-          description: The ID of the pet to update
+            example: '684ae0d443986cebb325e0c1'
       requestBody:
         required: true
         content:
@@ -290,71 +97,13 @@ paths:
               $ref: '#/components/schemas/PetInput'
       responses:
         '200':
-          description: Pet updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: pet updated
-                  payload:
-                    $ref: '#/components/schemas/Pet'
+          $ref: '#/components/responses/PetUpdated'
         '400':
-          description: Incomplete values
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Incomplete values
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
-        '404':
-          description: Pet not updated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Pet not updated
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/CouldNotBeUpdated'
         '500':
-          description: Unexpected server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Unexpected server error - Try later or contact your administrator
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/InternalServerError'
 
     delete:
       tags:
@@ -370,71 +119,11 @@ paths:
           description: The ID of the pet to delete.
       responses:
         '200':
-          description: Pet deleted successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Pet deleted successfully
-                  payload:
-                    $ref: '#/components/schemas/Pet'
-        '400':
-          description: Incomplete values or invalid ID
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Incomplete values
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/PetDeleted'
         '404':
-          description: Pet not found or not deleted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Pet not deleted
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/CouldNotBeDeleted'
         '500':
-          description: Unexpected server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Unexpected server error - Try later or contact your administrator
-                  payload:
-                    type: string
-                    nullable: true
-                    example: null
+          $ref: '#/components/responses/InternalServerError'
 
 components:
   schemas:
@@ -462,7 +151,7 @@ components:
           nullable: true
         image:
           type: string
-          nullable: true
+          example: /public/img/max.jpg
       required:
         - name
         - specie
@@ -472,7 +161,7 @@ components:
       properties:
         name:
           type: string
-          example: Luna
+          example: Luna updaded
         specie:
           type: string
           example: cat
@@ -484,3 +173,104 @@ components:
         - name
         - specie
         - birthDate
+
+    PetWithImageInput:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Max
+        specie:
+          type: string
+          example: dog
+        birthDate:
+          type: string
+          format: date
+          example: 2020-06-15
+        image:
+          type: string
+          format: binary
+          description: Image file of the pet to be uploaded
+
+  responses:
+    PetRetrieved:
+      description: Pet successfully retrieved
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Pet retrieved successfully
+              payload:
+                $ref: '#/components/schemas/Pet'
+
+    PetsRetrieved:
+      description: List of all pets
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Pets retrieved successfully
+              payload:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+
+    PetCreated:
+      description: Pet created successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Pet created successfully
+              payload:
+                $ref: '#/components/schemas/Pet'
+
+    PetUpdated:
+      description: Pet updated successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: pet updated
+              payload:
+                $ref: '#/components/schemas/Pet'
+
+    PetDeleted:
+      description: Pet deleted successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Pet deleted successfully
+              payload:
+                $ref: '#/components/schemas/Pet'

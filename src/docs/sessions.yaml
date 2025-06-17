@@ -1,0 +1,255 @@
+paths:
+  /api/sessions/register:
+    post:
+      tags:
+        - Sessions
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegisterInput'
+      responses:
+        '200':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: User registered successfully
+                  payload:
+                    $ref: '#/components/schemas/UserRegistered'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/CouldNotBeCreated'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/sessions/login:
+    post:
+      tags:
+        - Sessions
+      summary: Login a user and receive a token cookie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginInput'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Logged in
+                  payload:
+                    $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidCredentials'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/sessions/current:
+    get:
+      tags:
+        - Sessions
+      summary: Get current user session from protected token
+      responses:
+        '200':
+          description: User session retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: User logged in
+                  payload:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/AutenticationRequired'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/sessions/unprotectedLogin:
+    post:
+      tags:
+        - Sessions
+      summary: Login without DTO validation
+      description: >
+        Login route that signs and returns a cookie with the full user object (without using DTO).
+        Intended for development/testing purposes. It sets a `unprotectedCookie` with a JWT. ⚠️ **This endpoint is not recommended for production use.**
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  example: john.doe@example.com
+                password:
+                  type: string
+                  example: 123
+      responses:
+        '200':
+          description: Unprotected login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unprotected Logged in
+                  payload:
+                    $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidCredentials'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/sessions/unprotectedCurrent:
+    get:
+      tags:
+        - Sessions
+      summary: Get current session without DTO validation.
+      description: >
+        Current session without using DTO.
+        Intended for development/testing purposes. ⚠️ **This endpoint is not recommended for production use.**
+      responses:
+        '200':
+          description: User session retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: User logged in
+                  payload:
+                    $ref: '#/components/schemas/UserToken'
+        '401':
+          $ref: '#/components/responses/AutenticationRequired'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    UserRegistered:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 660a1234e1abc1234567de89
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        pets:
+          type: array
+          description: Array of pet references. Defaults to an empty array on user creation.
+          minItems: 0
+          example: []
+          items:
+            $ref: '#/components/schemas/Pet'
+        role:
+          type: string
+          example: user
+
+    UserToken:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 660a1234e1abc1234567de89
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        role:
+          type: string
+          example: user
+
+    UserRegisterInput:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - email
+        - password
+      properties:
+        first_name:
+          type: string
+          example: New
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          example: newuser@example.com
+        password:
+          type: string
+          example: 123
+
+    UserLoginInput:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: newuser@example.com
+        password:
+          type: string
+          example: 123

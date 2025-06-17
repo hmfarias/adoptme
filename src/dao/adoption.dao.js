@@ -14,7 +14,7 @@ export default class AdoptionDAO {
 	};
 
 	update = (id, doc) => {
-		return AdoptionModel.findByIdAndUpdate(id, { $set: doc });
+		return AdoptionModel.findByIdAndUpdate(id, { $set: doc }, { new: true });
 	};
 
 	delete = (id) => {

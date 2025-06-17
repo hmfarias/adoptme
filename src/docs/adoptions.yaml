@@ -1,0 +1,135 @@
+paths:
+  /api/adoptions:
+    get:
+      tags:
+        - Adoptions
+      summary: Get all adoptions
+      description: Retrieves all adoptions from the database.
+      responses:
+        '200':
+          description: Adoptions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Adoptions retrieved successfully
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Adoption'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/adoptions/{aid}:
+    get:
+      tags:
+        - Adoptions
+      summary: Get an adoption by ID
+      parameters:
+        - in: path
+          name: aid
+          required: true
+          description: ID of the adoption to retrieve
+          schema:
+            type: string
+            example: 6645cda44a84a8d4f6249c3f
+      responses:
+        '200':
+          description: Adoption retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Adoption retrieved successfully
+                  payload:
+                    $ref: '#/components/schemas/Adoption'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/adoptions/{uid}/{pid}:
+    post:
+      tags:
+        - Adoptions
+      summary: Create an adoption record
+      description: >
+        Registers the adoption of a pet by a user.  
+        The pet must not already be adopted.
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: User ID
+          schema:
+            type: string
+            example: 684ae0d443986cebb325e0b6
+        - in: path
+          name: pid
+          required: true
+          description: Pet ID
+          schema:
+            type: string
+            example: 684ae0d443986cebb325e0c1
+      responses:
+        '200':
+          description: Adoption created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Pet adopted
+        '400':
+          description: Pet is already adopted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Pet is already adopted
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Adoption:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6645cda44a84a8d4f6249c3f
+        owner:
+          $ref: '#/components/schemas/User'
+        pet:
+          $ref: '#/components/schemas/Pet'
+        createdAt:
+          type: string
+          format: date-time
+          example: 2024-06-16T13:45:00.000Z

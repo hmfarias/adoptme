@@ -16,7 +16,7 @@ export default class PetDAO {
 	saveMany = (docs) => PetModel.insertMany(docs);
 
 	update = (id, doc) => {
-		return PetModel.findByIdAndUpdate(id, { $set: doc });
+		return PetModel.findByIdAndUpdate(id, { $set: doc }, { new: true });
 	};
 
 	delete = (id) => {

@@ -14,7 +14,11 @@ const getAllAdoptions = async (req, res) => {
 		req.logger.error(`Error in getAllAdoptions: ${error.message}`, {
 			stack: error.stack,
 		});
-		res.status(500).send({ status: 'error', error: error.message });
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -30,7 +34,11 @@ const getAdoption = async (req, res) => {
 		res.send({ status: 'success', payload: adoption });
 	} catch (error) {
 		req.logger.error(`Error in getAdoption: ${error.message}`, { stack: error.stack });
-		res.status(500).send({ status: 'error', error: error.message });
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -62,7 +70,11 @@ const createAdoption = async (req, res) => {
 		res.send({ status: 'success', message: 'Pet adopted' });
 	} catch (error) {
 		req.logger.error(`Error in createAdoption: ${error.message}`, { stack: error.stack });
-		res.status(500).send({ status: 'error', error: error.message });
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 

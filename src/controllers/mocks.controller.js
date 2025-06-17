@@ -1,5 +1,5 @@
 // controllers/mocks.controller.js
-import { generateFakeUser, generateFakePet, errorHandler } from '../utils.js';
+import { generateFakeUser, generateFakePet } from '../utils.js';
 import { usersService, petsService } from '../services/index.js';
 
 const mockingUsers = async (req, res) => {
@@ -25,7 +25,11 @@ const mockingUsers = async (req, res) => {
 		res.status(200).json({ error: false, message: 'mocking users', payload: users });
 	} catch (error) {
 		req.logger.error(`Error in mockingUsers: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -50,7 +54,11 @@ const mockingPets = (req, res) => {
 		res.status(200).json({ error: false, message: 'mocking pets', payload: pets });
 	} catch (error) {
 		req.logger.error(`Error in mockingPets: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -76,7 +84,11 @@ const generateData = async (req, res) => {
 		});
 	} catch (error) {
 		req.logger.error(`Error in generateData: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 

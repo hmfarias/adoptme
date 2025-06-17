@@ -1,0 +1,149 @@
+components:
+  responses:
+    BadRequest:
+      description: Incomplete values
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Incomplete values
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    NotFound:
+      description: |
+        Not found. The placeholder [RESOURCE] will be replaced by the actual resource name depending on the endpoint.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: '[RESOURCE] not found'
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    CouldNotBeCreated:
+      description: |
+        Could not created. The placeholder [RESOURCE] will be replaced by the actual resource name depending on the endpoint.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: '[RESOURCE] could not be created'
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    CouldNotBeUpdated:
+      description: |
+        Could Not updated. The placeholder [RESOURCE] will be replaced by the actual resource name depending on the endpoint.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: '[RESOURCE] could not be updated'
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    CouldNotBeDeleted:
+      description: |
+        Could not deleted. The placeholder [RESOURCE] will be replaced by the actual resource name depending on the endpoint.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: '[RESOURCE] could not be deleted'
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    InternalServerError:
+      description: Unexpected server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Unexpected server error - Try later or contact your administrator
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    InvalidCredentials:
+      description: Invalid credentials
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Invalid credentials
+              payload:
+                type: string
+                nullable: true
+                example: null
+
+    AutenticationRequired:
+      description: Autentication required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Autentication required
+              payload:
+                type: string
+                nullable: true
+                example: null

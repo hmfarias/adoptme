@@ -15,6 +15,9 @@
   - [📚 Estandarización de nombres de archivo](#nombres-de-archivos)
   - [⚠️ Control de errores (try/catch)](#control-de-errores)
   - [📌 Métodos sin implementar](#metodos-sin-implementar)
+  - [🧬 POPULATE](#populate)
+    - [👤 Asociación entre Usuarios y Mascotas](#populate-userspets)
+    - [😺 Asociación en adopciones](#populate-adoptions)
 - [🔐 CREDENCIALES - .env](#credenciales)
 - [🔧 Instalación](#-instalación)
 - ⚙️ [Configuración del Puerto y Entorno desde Línea de Comandos](#comander)
@@ -140,7 +143,11 @@ const getAdoption = async (req, res) => {
 			return res.status(404).send({ status: 'error', error: 'Adoption not found' });
 		res.send({ status: 'success', payload: adoption });
 	} catch (error) {
-		res.status(500).send({ status: 'error', error: error.message });
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 ```
@@ -180,10 +187,80 @@ const deleteUser = async (req, res) => {
 		res.send({ status: 'success', message: 'User deleted' });
 	} catch (error) {
 		console.error('Error in deleteUser:', error);
-		res.status(500).send({ status: 'error', error: 'Internal server error' });
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 ```
+
+---
+
+<a name="populate"></a>
+
+### 🧬 POPULATE
+
+<a name="populate-userspets"></a>
+
+#### 👤 Asociación entre Usuarios y Mascotas
+
+Se implementó una relación entre los usuarios y las mascotas adoptadas utilizando la funcionalidad de populate de Mongoose.
+
+##### 📐 Modelo de Usuario (UserModel)
+
+El campo pets del modelo de usuario fue definido como un array de referencias al modelo de mascotas (Pets), permitiendo almacenar múltiples IDs de mascotas adoptadas por un usuario:
+
+```js
+pets: [
+	{
+		_id: {
+			type: mongoose.SchemaTypes.ObjectId,
+			ref: 'Pets',
+		},
+	},
+];
+```
+
+##### 🔍 Implementación de populate
+
+Se actualizó la capa DAO (UserDAO) para incluir el método .populate('pets') en todas las consultas que recuperan usuarios. Esto permite que, al obtener un usuario, se devuelvan automáticamente los detalles completos de las mascotas asociadas, en lugar de solo sus IDs.
+
+---
+
+<a name="populate-adoptions"></a>
+
+#### 😺 Asociación en adopciones
+
+Para facilitar la obtención de información completa sobre cada adopción, se implementó populate automático en el modelo AdoptionModel. Esto permite que, al realizar cualquier consulta sobre adopciones (find, findOne, findById, etc.), los campos relacionados owner (usuario que adoptó) y pet (mascota adoptada) sean automáticamente poblados con sus datos correspondientes desde las colecciones Users y Pets.
+
+##### 🔧 Implementación técnica:
+
+Se utilizó un middleware pre(/^find/) en el schema de Mongoose:
+
+```js
+schema.pre(/^find/, function (next) {
+	this.populate({
+		path: 'owner',
+		select: 'first_name last_name email role',
+	}).populate({
+		path: 'pet',
+		select: 'name specie birthDate adopted',
+	});
+	next();
+});
+```
+
+---
+
+##### ✅ Beneficios de Populate
+
+Con estas mejoras:
+• Se facilita la visualización y consumo de los datos desde el cliente.
+• Se evita realizar múltiples consultas para obtener los datos completos de las mascotas adoptadas por un usuario.
+
+Esta asociación es esencial para representar de forma efectiva las relaciones en un sistema de adopciones, y es compatible con el diseño RESTful y la documentación Swagger generada para la API.
 
 [Volver al menú](#menu)
 
@@ -285,6 +362,18 @@ Antes de instalar la aplicación, asegúrate de contar con:
 La aplicación permite establecer de forma dinámica tanto el **puerto de ejecución** como el **modo (`development` o `production`)** a través de la línea de comandos, utilizando la librería [Commander](https://github.com/tj/commander.js).
 
 Gracias a esta implementación, es posible ejecutar la aplicación con distintas configuraciones sin necesidad de modificar archivos.
+
+Luego de poner a correr la aplicación, se podrá ver la siguiente información en la consola de comandos para confirmar que el servidor está corriendo en el puerto y con la configuración deseada:
+
+```
+info: Server is running on port [PUERTO] - DB: backendIII - ENV: [MODO DE EJECUCIÓN].
+```
+
+Ejemplo:
+
+```
+info: Server is running on port 8080 - DB: backendIII - ENV: development
+```
 
 ### 🛠️ Prioridad de resolución para cada configuración
 

@@ -1,7 +1,5 @@
-import { th } from '@faker-js/faker';
 import PetDTO from '../dto/pet.dto.js';
 import { petsService } from '../services/index.js';
-import { errorHandler } from '../utils.js';
 import __dirname from '../utils/index.js';
 
 const getAllPets = async (req, res) => {
@@ -12,13 +10,17 @@ const getAllPets = async (req, res) => {
 			req.logger.warning('Pet list is empty');
 			return res
 				.status(404)
-				.send({ error: true, message: 'Pets not found', payload: null });
+				.send({ error: true, message: 'Pet not found', payload: null });
 		}
 
 		res.send({ error: false, message: 'Pets retrieved sucessfully', payload: pets });
 	} catch (error) {
 		req.logger.error(`Error in getAllPets: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -30,15 +32,17 @@ const getPet = async (req, res) => {
 
 		if (!pet) {
 			req.logger.warning(`Pet not found - ID: ${petId}`);
-			return res
-				.status(404)
-				.send({ error: true, message: 'Pet not found', payload: null });
+			return res.status(404).send({ error: true, message: 'Not found', payload: null });
 		}
 
 		res.send({ error: false, message: 'Pet retrieved sucessfully', payload: pet });
 	} catch (error) {
 		req.logger.error(`Error in getPet: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -54,18 +58,22 @@ const createPet = async (req, res) => {
 		}
 
 		const pet = PetDTO.getPetInputFrom({ name, specie, birthDate });
-		const result = await petsService.create(pet);
 
+		const result = await petsService.create(pet);
 		if (!result) {
-			req.logger.warning('Pet not created');
+			req.logger.warning('Pet could not be created');
 			return res
-				.status(404)
-				.send({ error: true, message: 'Pet not created', payload: null });
+				.status(422)
+				.send({ error: true, message: 'Pet could not be created', payload: null });
 		}
 		res.send({ error: false, message: 'Pet created sucessfully', payload: result });
 	} catch (error) {
 		req.logger.error(`Error in createPet: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -83,15 +91,19 @@ const updatePet = async (req, res) => {
 		const result = await petsService.update(petId, petUpdateBody);
 
 		if (!result) {
-			req.logger.warning('Pet not updated');
+			req.logger.warning('Pet could not be updated');
 			return res
-				.status(404)
-				.send({ error: true, message: 'Pet not updated', payload: null });
+				.status(422)
+				.send({ error: true, message: 'Pet could not be updated', payload: null });
 		}
 		res.send({ error: false, message: 'Pet updated sucessfully', payload: result });
 	} catch (error) {
 		req.logger.error(`Error in updatePet: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -101,15 +113,19 @@ const deletePet = async (req, res) => {
 
 		const result = await petsService.delete(petId);
 		if (!result) {
-			req.logger.warning('Pet not deleted');
+			req.logger.warning('Pet could not be deleted');
 			return res
-				.status(404)
-				.send({ error: true, message: 'Pet not deleted', payload: null });
+				.status(422)
+				.send({ error: true, message: 'Pet could not be deleted', payload: null });
 		}
 		res.send({ error: false, message: 'Pet deleted sucessfully', payload: result });
 	} catch (error) {
 		req.logger.error(`Error in deletePet: ${error.message}`, { stack: error.stack });
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
@@ -136,17 +152,21 @@ const createPetWithImage = async (req, res) => {
 
 		const result = await petsService.create(pet);
 		if (!result) {
-			req.logger.warning('Pet not created');
+			req.logger.warning('Pet could not be created');
 			return res
-				.status(404)
-				.send({ error: true, message: 'Pet not created', payload: null });
+				.status(422)
+				.send({ error: true, message: 'Pet could not be created', payload: null });
 		}
 		res.send({ error: false, message: 'Pet created sucessfully', payload: result });
 	} catch (error) {
 		req.logger.error(`Error in createPetWithImage: ${error.message}`, {
 			stack: error.stack,
 		});
-		errorHandler(error, res);
+		res.status(500).json({
+			error: true,
+			message: 'Unexpected server error - Try later or contact your administrator',
+			payload: null,
+		});
 	}
 };
 
