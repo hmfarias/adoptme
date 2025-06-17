@@ -1,0 +1,121 @@
+paths:
+  /api/mocks/mockingusers:
+    get:
+      tags:
+        - Mocks
+      summary: Generate mock users
+      description: Generates a list of fake users.(Does not insert records in the database)
+      parameters:
+        - in: query
+          name: quantity
+          schema:
+            type: integer
+            example: 10
+          description: Number of mock users to generate (default 50)
+      responses:
+        '200':
+          description: Mock users generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: mocking users
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserRegisteredUnprotected'
+        '400':
+          $ref: '#/components/responses/BadRequestMock'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/mocks/mockingpets:
+    get:
+      tags:
+        - Mocks
+      summary: Generate mock pets
+      description: Generates a list of fake pets. (Does not insert records in the database).
+      parameters:
+        - in: query
+          name: quantity
+          schema:
+            type: integer
+            example: 15
+          description: Number of mock pets to generate (default 50)
+      responses:
+        '200':
+          description: Mock pets generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: mocking pets
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Pet'
+        '400':
+          $ref: '#/components/responses/BadRequestMock'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/mocks/generateData:
+    post:
+      tags:
+        - Mocks
+      summary: Insert mock data into the database
+      description: Generates and inserts fake users and pets into the database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: integer
+                  example: 5
+                  description: Number of users to insert
+                pets:
+                  type: integer
+                  example: 10
+                  description: Number of pets to insert
+      responses:
+        '200':
+          description: Mock data inserted into the database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Generated 5 users and 10 pets
+                  payload:
+                    type: object
+                    properties:
+                      insertedUsers:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/UserUnprotected'
+                      insertedPets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Pet'
+        '500':
+          $ref: '#/components/responses/InternalServerError'

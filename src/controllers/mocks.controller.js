@@ -3,24 +3,22 @@ import { generateFakeUser, generateFakePet } from '../utils.js';
 import { usersService, petsService } from '../services/index.js';
 
 const mockingUsers = async (req, res) => {
-	const { quantity = 50 } = req.params;
+	const quantity = parseInt(req.query.quantity) || 50;
 
 	// Check if quantity is a positive number
-	if (!quantity || isNaN(quantity) || quantity <= 0) {
-		req.logger.error(
-			`Invalid quantity parameter: ${quantity}. Must be a positive number.`
-		);
+	if (isNaN(quantity) || quantity <= 0) {
+		req.logger.error(`Invalid quantity: ${req.query.quantity}`);
 		return res.status(400).json({
 			error: true,
-			message: 'Invalid quantity parameter. Must be a positive number.',
+			message: 'Invalid quantity parameter.',
+			payload: null,
 		});
 	}
 
 	try {
-		let users = [];
-		for (let i = 0; i < quantity; i++) {
-			users.push(await generateFakeUser());
-		}
+		const users = await Promise.all(
+			Array.from({ length: quantity }, () => generateFakeUser())
+		);
 		req.logger.info(`Generated ${users.length} mock users`);
 		res.status(200).json({ error: false, message: 'mocking users', payload: users });
 	} catch (error) {
@@ -34,22 +32,20 @@ const mockingUsers = async (req, res) => {
 };
 
 const mockingPets = (req, res) => {
-	const { quantity } = req.params;
+	const quantity = parseInt(req.query.quantity) || 50;
 
 	// Check if quantity is a positive number
-	if (!quantity || isNaN(quantity) || quantity <= 0) {
+	if (isNaN(quantity) || quantity <= 0) {
+		req.logger.warning(`Invalid quantity: ${req.query.quantity}`);
 		return res.status(400).json({
 			error: true,
-			message: 'Invalid quantity parameter. Must be a positive number.',
+			message: 'Invalid quantity parameter.',
+			payload: null,
 		});
 	}
 
 	try {
-		let pets = [];
-
-		for (let i = 0; i < quantity; i++) {
-			pets.push(generateFakePet());
-		}
+		const pets = Array.from({ length: quantity }, () => generateFakePet());
 		req.logger.info(`Generated ${pets.length} mock pets`);
 		res.status(200).json({ error: false, message: 'mocking pets', payload: pets });
 	} catch (error) {
@@ -79,8 +75,9 @@ const generateData = async (req, res) => {
 			`Inserted ${insertedUsers.length} users and ${insertedPets.length} pets`
 		);
 		res.status(200).json({
-			status: 'success',
+			error: false,
 			message: `Generated ${insertedUsers.length} users and ${insertedPets.length} pets`,
+			payload: { insertedUsers, insertedPets },
 		});
 	} catch (error) {
 		req.logger.error(`Error in generateData: ${error.message}`, { stack: error.stack });

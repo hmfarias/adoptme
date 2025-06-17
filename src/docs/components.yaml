@@ -18,6 +18,24 @@ components:
                 nullable: true
                 example: null
 
+    BadRequestMock:
+      description: Invalid value
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Invalid quantity parameter
+              payload:
+                type: string
+                nullable: true
+                example: null
+
     NotFound:
       description: |
         Not found. The placeholder [RESOURCE] will be replaced by the actual resource name depending on the endpoint.

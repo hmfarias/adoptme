@@ -44,6 +44,7 @@ export const errorHandler = (error, res) => {
 // Generar mascota falsa
 export const generateFakePet = () => {
 	return {
+		_id: new mongoose.Types.ObjectId(),
 		name: faker.person.firstName(), // Reemplaza faker.animal.name() por esto
 		specie: faker.helpers.arrayElement(['dog', 'cat', 'rabbit', 'bird']),
 		birthDate: faker.date.past({ years: 10 }),
@@ -56,6 +57,7 @@ export const generateFakePet = () => {
 export const generateFakeUser = async () => {
 	const hashedPassword = await bcrypt.hash('coder123', 10);
 	return {
+		_id: new mongoose.Types.ObjectId(),
 		first_name: faker.person.firstName(),
 		last_name: faker.person.lastName(),
 		email: faker.internet.email(),

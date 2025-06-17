@@ -134,7 +134,7 @@ paths:
                     type: string
                     example: Unprotected Logged in
                   payload:
-                    $ref: '#/components/schemas/User'
+                    $ref: '#/components/schemas/UserUnprotected'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -167,7 +167,7 @@ paths:
                     type: string
                     example: User logged in
                   payload:
-                    $ref: '#/components/schemas/UserToken'
+                    $ref: '#/components/schemas/UserTokenUnprotected'
         '401':
           $ref: '#/components/responses/AutenticationRequired'
         '500':
@@ -201,6 +201,35 @@ components:
           type: string
           example: user
 
+    UserRegisteredUnprotected:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 660a1234e1abc1234567de89
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        password:
+          type: string
+          example: $2b$10$lcLkzG2yD5t/9riN.s2g.eSme37gEeeVr0NbKfh/hRdiN97kr1iNm
+        pets:
+          type: array
+          description: Array of pet references. Defaults to an empty array on user creation.
+          minItems: 0
+          example: []
+          items:
+            $ref: '#/components/schemas/Pet'
+        role:
+          type: string
+          example: user
+
     UserToken:
       type: object
       properties:
@@ -216,6 +245,36 @@ components:
         email:
           type: string
           example: john.doe@example.com
+        role:
+          type: string
+          example: user
+
+    UserTokenUnprotected:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 660a1234e1abc1234567de89
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        password:
+          type: string
+          example: $2b$10$lcLkzG2yD5t/9riN.s2g.eSme37gEeeVr0NbKfh/hRdiN97kr1iNm
+        pets:
+          type: array
+          description: |
+            Array of pet references. On user creation, it starts as an empty array.
+            After adopting pets, it may contain full Pet objects (populated).
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Pet'
         role:
           type: string
           example: user

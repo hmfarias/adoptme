@@ -40,7 +40,7 @@ paths:
           description: ID of the adoption to retrieve
           schema:
             type: string
-            example: 6645cda44a84a8d4f6249c3f
+            example: 684dd39adac2ac2e981f37b7
       responses:
         '200':
           description: Adoption retrieved successfully
@@ -77,14 +77,14 @@ paths:
           description: User ID
           schema:
             type: string
-            example: 684ae0d443986cebb325e0b6
+            example: 684ae0d443986cebb325e0bb
         - in: path
           name: pid
           required: true
           description: Pet ID
           schema:
             type: string
-            example: 684ae0d443986cebb325e0c1
+            example: 684ae0d443986cebb325e0c3
       responses:
         '200':
           description: Adoption created successfully
@@ -114,6 +114,8 @@ paths:
                     example: Pet is already adopted
         '404':
           $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/CouldNotBeCreated'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
@@ -126,10 +128,45 @@ components:
           type: string
           example: 6645cda44a84a8d4f6249c3f
         owner:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/UserAdoption'
         pet:
-          $ref: '#/components/schemas/Pet'
-        createdAt:
+          $ref: '#/components/schemas/PetAdoption'
+
+    UserAdoption:
+      type: object
+      properties:
+        _id:
           type: string
-          format: date-time
-          example: 2024-06-16T13:45:00.000Z
+          example: 660a1234e1abc1234567de89
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        role:
+          type: string
+          example: user
+
+    PetAdoption:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 660a1234e1abc1234567de89
+        name:
+          type: string
+          example: Fido
+        specie:
+          type: string
+          example: dog
+        birthDate:
+          type: string
+          format: date
+          example: 2015-03-25
+        adopted:
+          type: boolean
+          example: true

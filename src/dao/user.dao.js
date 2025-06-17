@@ -14,9 +14,11 @@ export default class UserDAO {
 	};
 
 	update = (id, doc) => {
-		return UserModel.findByIdAndUpdate(id, { $set: doc }, { new: true }).populate(
-			'pets._id'
-		);
+		// If the DOC already includes Mongo operators, do not use $set
+		const usesOperator = Object.keys(doc).some((key) => key.startsWith('$'));
+		const updatePayload = usesOperator ? doc : { $set: doc };
+
+		return UserModel.findByIdAndUpdate(id, updatePayload, { new: true }).populate('pets');
 	};
 
 	delete = (id) => {

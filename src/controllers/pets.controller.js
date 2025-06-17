@@ -10,7 +10,7 @@ const getAllPets = async (req, res) => {
 			req.logger.warning('Pet list is empty');
 			return res
 				.status(404)
-				.send({ error: true, message: 'Pet not found', payload: null });
+				.send({ error: true, message: 'Pets not found', payload: null });
 		}
 
 		res.send({ error: false, message: 'Pets retrieved sucessfully', payload: pets });

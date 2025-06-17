@@ -164,6 +164,36 @@ components:
           type: string
           example: user
 
+    UserUnprotected:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 660a1234e1abc1234567de89
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: john.doe@example.com
+        password:
+          type: string
+          example: $2b$10$lcLkzG2yD5t/9riN.s2g.eSme37gEeeVr0NbKfh/hRdiN97kr1iNm
+        pets:
+          type: array
+          description: |
+            Array of pet references. On user creation, it starts as an empty array.
+            After adopting pets, it may contain full Pet objects (populated).
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Pet'
+        role:
+          type: string
+          example: user
+
     UserInput:
       type: object
       properties:
