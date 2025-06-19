@@ -630,9 +630,9 @@ Los errores a partir del nivel `error` en producción son almacenados en:
 /logs/errors.log
 ```
 
-#### 🧪 Rutas de prueba
+### 🧪 Rutas de prueba
 
-Se agregó una ruta de testing para simular logs de todos los niveles:
+Se agregaron rutas de testing para simular logs de todos los niveles:
 
 ```http
 GET /api/loggerTest
@@ -644,6 +644,8 @@ También se incluyeron pruebas para errores no capturados:
 GET /api/loggerTest/fail    → Promesa rechazada sin catch
 GET /api/loggerTest/boom    → Error lanzado sin try/catch
 ```
+
+Todas estas rutas puedes probarlas en la coleccion Postman que se adjunta en el repositorio. (Ver la sección [Postman](#postman) ).
 
 #### 🔥 Errores no manejados
 
