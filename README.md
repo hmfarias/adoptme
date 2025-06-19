@@ -22,9 +22,6 @@
 - [🔧 Instalación](#-instalación)
 - ⚙️ [Configuración del Puerto y Entorno desde Línea de Comandos](#comander)
 - [🎭 Funcionalidad de MOCKING](#-funcionalidad-de-mocking)
-  - [📍 Endpoint `/api/mocks/mockingusers`](#endpoint-apimocksmockingusers)
-  - [📍 Endpoint `/api/mocks/mockingpets`](#endpoint-apimocksmockingpets)
-  - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
 - [🧠 LOGGER Integrado con Winston](#logger)
 - [📘 SWAGGER - Documentación de la API](#swagger)
 - [ 🧪 TESTING - Mocha y Supertest](#testing)
@@ -472,7 +469,6 @@ node src/app.js -p 5000 --mode development
 
 Este sistema permite generar datos falsos para pruebas o poblar la base de datos.
 
-<a name="endpoint-apimocksmockingusers"></a>
 
 ### 📍 Endpoint `/api/mocks/mockingusers/:quantity`
 
