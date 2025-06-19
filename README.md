@@ -811,7 +811,7 @@ Este comando:
 
 ### 🧪 Para correr tests
 
-Esta imagen está pensada para producción. Si se quiere ejecutar tests (unitarios o de integración), deberá clonar el proyecto y usar los scripts de package.json ( Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) ).
+Esta imagen está pensada para producción. Si se quieres ejecutar tests (unitarios o de integración), deberás clonar el proyecto y usar los scripts de package.json ( Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) ).
 
 ---
 
