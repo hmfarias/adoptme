@@ -2,7 +2,7 @@ import { createHash, passwordValidation } from '../../src/utils/index.js';
 import { expect } from 'chai';
 import UserDTO from '../../src/dto/user.dto.js';
 
-describe('Utilities and UserDTO test', () => {
+describe('Utilities and UserDTO test - Unit Test', () => {
 	describe('Password hashing and validation', () => {
 		const plainPassword = 'DifficultPasword';
 

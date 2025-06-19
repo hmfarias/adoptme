@@ -11,7 +11,7 @@ if (!mongoose.models.Users) {
 	mongoose.model('Users', new mongoose.Schema({}));
 }
 
-describe('PetDAO test', () => {
+describe('PetDAO test - Unit Test', () => {
 	let petDao;
 	let mockPet1;
 	let mockPet2;

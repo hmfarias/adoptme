@@ -7,7 +7,7 @@ import PetModel from '../../src/dao/models/pet.model.js';
 import { connectDB } from '../../src/config/database.config.js';
 import { config } from '../../src/config/config.js';
 
-describe('UserDAO test', () => {
+describe('UserDAO test - Unit Test', () => {
 	let userDao;
 	let petDao;
 	let mockUser1;

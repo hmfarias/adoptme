@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import PetDTO from '../../src/dto/pet.dto.js';
 
-describe('PetDTO test', () => {
+describe('PetDTO test - Unit Test', () => {
 	describe('getPetInputFrom()', () => {
 		it('getPetInputFrom() -> Should return complete pet input from valid object', () => {
 			const input = {

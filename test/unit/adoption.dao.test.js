@@ -9,7 +9,7 @@ import UserModel from '../../src/dao/models/user.model.js';
 import { connectDB } from '../../src/config/database.config.js';
 import { config } from '../../src/config/config.js';
 
-describe('AdoptionDAO test', () => {
+describe('AdoptionDAO test - Unit Test', () => {
 	let adoptionDao;
 	let userDao;
 	let petDao;
