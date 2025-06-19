@@ -1,13 +1,16 @@
 import mongoose from 'mongoose';
 import { config } from './config.js';
+import { logger } from './logger.js';
 
-export const connectDB = async () => {
+export const connectDB = async (db_Name) => {
 	try {
 		await mongoose.connect(config.MONGODB_URI, {
-			dbName: config.DB_NAME,
+			dbName: db_Name,
 		});
-		console.log(`DB online`);
+		logger.info(`DB online → ${db_Name}`);
 	} catch (error) {
-		console.log('Error connecting with the database:', error);
+		logger.fatal(`Error connecting with the database: ${error.message}`, {
+			stack: error.stack,
+		});
 	}
 };

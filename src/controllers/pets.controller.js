@@ -6,7 +6,7 @@ const getAllPets = async (req, res) => {
 	try {
 		const pets = await petsService.getAll();
 
-		if (!pets) {
+		if (!pets || pets.length === 0) {
 			req.logger.warning('Pet list is empty');
 			return res
 				.status(404)
@@ -30,7 +30,7 @@ const getPet = async (req, res) => {
 
 		const pet = await petsService.getBy({ _id: petId });
 
-		if (!pet) {
+		if (!pet || pet.length === 0) {
 			req.logger.warning(`Pet not found - ID: ${petId}`);
 			return res.status(404).send({ error: true, message: 'Not found', payload: null });
 		}

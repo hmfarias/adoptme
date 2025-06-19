@@ -65,14 +65,38 @@ const prodLogger = winston.createLogger({
 	],
 });
 
+// Null Logger for Test Environment
+const testLogger = {
+	fatal: () => {},
+	error: () => {},
+	warning: () => {},
+	info: () => {},
+	http: () => {},
+	debug: () => {},
+};
+
 const env = config.NODE_ENV || 'development';
-export const logger = env === 'production' ? prodLogger : devLogger;
+// export const logger = env === 'production' ? prodLogger : devLogger;.
+export const logger =
+	env === 'test' ? testLogger : env === 'production' ? prodLogger : devLogger;
+
+console.log('Logger middleware running in mode:', env);
 
 // Middleware to add the logger to req
+// export const addLogger = (req, res, next) => {
+// 	console.log('Logger middleware running in:', env);
+// 	req.logger = logger;
+// 	req.logger.http(`${req.method} in ${req.url} - ${new Date().toLocaleTimeString()}`);
+// 	next();
+// };
+
 export const addLogger = (req, res, next) => {
-	console.log('Logger middleware running in:', env);
-	req.logger = logger;
-	req.logger.http(`${req.method} in ${req.url} - ${new Date().toLocaleTimeString()}`);
+	if (env !== 'test') {
+		req.logger = logger;
+		req.logger.http(`${req.method} ${req.url} - ${new Date().toLocaleTimeString()}`);
+	} else {
+		req.logger = logger; // testLogger (No functional methods)
+	}
 	next();
 };
 

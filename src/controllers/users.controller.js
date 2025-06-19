@@ -49,6 +49,13 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
 	try {
 		const updateBody = req.body;
+		if (!updateBody || Object.keys(updateBody).length === 0) {
+			req.logger.warning('No values provided for updating user');
+			return res
+				.status(400)
+				.send({ error: true, message: 'No values provided', payload: null });
+		}
+
 		const userId = req.params.uid;
 
 		const user = await usersService.getUserById(userId);

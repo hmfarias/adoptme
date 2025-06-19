@@ -47,18 +47,20 @@ app.use((req, res) => {
 	res.status(404).json({ error: true, message: 'Route not found' });
 });
 
-// start the server
-try {
-	//connect to the database
-	await connectDB();
-	app.listen(config.PORT, () => {
-		logger.info(
-			`Server is running on port ${config.PORT} - DB: ${config.DB_NAME} - ENV: ${config.NODE_ENV}`
-		);
-	});
-} catch (error) {
-	logger.fatal(`Fatal error during startup: ${error.message}`, { stack: error.stack });
-	process.exit(1);
+// start the server only if not in test environment
+if (config.NODE_ENV !== 'test') {
+	try {
+		//connect to the database
+		await connectDB(config.DB_NAME);
+		app.listen(config.PORT, () => {
+			logger.info(
+				`Server is running on port ${config.PORT} - DB: ${config.DB_NAME} - ENV: ${config.NODE_ENV}`
+			);
+		});
+	} catch (error) {
+		logger.fatal(`Fatal error during startup: ${error.message}`, { stack: error.stack });
+		process.exit(1);
+	}
 }
 
 app.use((err, req, res, next) => {
@@ -69,3 +71,5 @@ app.use((err, req, res, next) => {
 		payload: null,
 	});
 });
+
+export default app; // for super test

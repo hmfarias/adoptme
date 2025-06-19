@@ -96,6 +96,8 @@ paths:
                     example: User updated
                   payload:
                     $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequestNoValues'
         '404':
           $ref: '#/components/responses/NotFound'
         '422':

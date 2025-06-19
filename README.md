@@ -11,7 +11,7 @@
 ## [📋 Menú](#menu)
 
 - [🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas](#intro)
-- [🔍 Revisión del Código](#revision-del-codigo)
+- [🔍 Revisión y corrección del Código](#revision-del-codigo)
   - [📚 Estandarización de nombres de archivo](#nombres-de-archivos)
   - [⚠️ Control de errores (try/catch)](#control-de-errores)
   - [📌 Métodos sin implementar](#metodos-sin-implementar)
@@ -21,12 +21,13 @@
 - [🔐 CREDENCIALES - .env](#credenciales)
 - [🔧 Instalación](#-instalación)
 - ⚙️ [Configuración del Puerto y Entorno desde Línea de Comandos](#comander)
-- [🧠 LOGGER Integrado con Winston](#logger)
-- [🧪 Funcionalidad de MOCKING](#-funcionalidad-de-mocking)
+- [🎭 Funcionalidad de MOCKING](#-funcionalidad-de-mocking)
   - [📍 Endpoint `/api/mocks/mockingusers`](#endpoint-apimocksmockingusers)
   - [📍 Endpoint `/api/mocks/mockingpets`](#endpoint-apimocksmockingpets)
   - [📍 Endpoint `/api/mocks/generateData`](#endpoint-apimocksgeneratedata)
-- [📘 Documentación de la API - Swagger](#swagger)
+- [🧠 LOGGER Integrado con Winston](#logger)
+- [📘 SWAGGER - Documentación de la API](#swagger)
+- [ 🧪 TESTING - Mocha y Supertest](#testing)
 - [🟠 Postman Collection para hacer las pruebas](#postman)
 - [📞 Contacto](#contacto)
 
@@ -361,6 +362,8 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 La aplicación permite establecer de forma dinámica tanto el **puerto de ejecución** como el **modo (`development` o `production`)** a través de la línea de comandos, utilizando la librería [Commander](https://github.com/tj/commander.js).
 
+El modo de ejecucion `test` se configura al iniciar la aplicacion con `npm run test, npm run test:integ o npm run test:unit`, y las diferencias con los otros modos consisten en que No se registran logs, el puerto es `8080` y la base de datos es `adoptme-test`.
+
 Gracias a esta implementación, es posible ejecutar la aplicación con distintas configuraciones sin necesidad de modificar archivos.
 
 Luego de poner a correr la aplicación, se podrá ver la siguiente información en la consola de comandos para confirmar que el servidor está corriendo en el puerto y con la configuración deseada:
@@ -382,6 +385,8 @@ info: Server is running on port 8080 - DB: backendIII - ENV: development
 | `PORT`        | 1. Línea de comandos `--port` o `-p`<br>2. Variable de entorno `.env`<br>3. Valor por defecto: `8080` |
 | `NODE_ENV`    | 1. Línea de comandos `--mode`<br>2. Variable de entorno `.env`<br>3. Valor por defecto: `development` |
 
+**Nota:** El modo de ejecución `test` no se asigna por linea de comando sino directamente al iniciar la aplicacion con `npm run test:integ` o `npm run test:unit`.
+
 ---
 
 ### 🧪 Ejemplos de uso
@@ -393,15 +398,20 @@ info: Server is running on port 8080 - DB: backendIII - ENV: development
 	"start": "node src/app.js",
 	"dev": "nodemon",
 	"prod": "node src/app.js --mode production",
-	"test": "mocha test/supertest.test.js"
-}
+	"test:unit": "NODE_ENV=test mocha test/unit/",
+	"test:integ": "NODE_ENV=test mocha test/integration/",
+	"test": "NODE_ENV=test mocha \"test/**/*.test.js\""
+	},
 ```
 
 #### Con npm scripts
 
 ```bash
-npm run dev -> modo development en puerto 8080
-npm run prod -> modo production en puerto 8080
+npm run dev -> modo development en puerto 8080 - Base de datos: adoptme
+npm run prod -> modo production en puerto 8080 - Base de datos: adoptme
+npm run test -> corre todos los tests - modo test en puerto 8080 - Base de datos: adoptme-test
+npm run test:unit -> corre los tests unitarios solamente - modo test en puerto 8080 - Base de datos: adoptme-test
+npm run test:integ -> corre los test de integración solamente - modo test en puerto 8080 - Base de datos: adoptme-test
 ```
 
 O bien:
@@ -441,6 +451,116 @@ node src/app.js -p 5000 --mode development
 
 ---
 
+<a name="funcionalidad-de-mocking"></a>
+
+## 🎭 Funcionalidad de Mocking
+
+Este sistema permite generar datos falsos para pruebas o poblar la base de datos.
+
+<a name="endpoint-apimocksmockingusers"></a>
+
+### 📍 Endpoint `/api/mocks/mockingusers/:quantity`
+
+**Método:** `GET`
+
+**Descripción:** Genera usuarios falsos (no los inserta en la BD) de acuerdo a la cantidad recibida por query param "quantity", con las siguientes características:
+
+- `password` es siempre `"coder123"` (encriptada).
+- `role`: `"user"` o `"admin"`.
+- `pets`: array vacío.
+
+**Ejemplo de respuesta:**
+
+```json
+{
+	"status": "success",
+	"payload": [
+		{
+			"first_name": "Laura",
+			"last_name": "Meier",
+			"email": "laura.meier@example.com",
+			"password": "$2b$10$...",
+			"role": "user",
+			"pets": []
+		}
+	]
+}
+```
+
+### 📍 Endpoint `/api/mocks/mockingpets?quantity=1`
+
+**Método:** `GET`
+
+**Descripción:** Genera mascotas falsas (no las inserta en la BD) de acuerdo a la cantidad recibida por query param "quantity", con las siguientes características:
+
+- Sin `owner`.
+- `adopted`: en falso.
+
+**Ejemplo de respuesta:**
+
+```json
+{
+	"error": false,
+	"message": "mocking pets",
+	"payload": [
+		{
+			"_id": "6853548b4e90d9956461aa0b",
+			"name": "Annabel",
+			"specie": "rabbit",
+			"birthDate": "2018-12-12T00:57:21.808Z",
+			"adopted": false,
+			"image": "https://picsum.photos/seed/i1E8MB/400/400?blur=6"
+		}
+	]
+}
+```
+
+### 📍 Endpoint `/api/mocks/generateData`
+
+**Método:** `POST`
+
+**Descripción:** Recibe por body el número de usuarios y mascotas a crear y las inserta en la base de datos.
+
+**Ejemplo de respuesta:**
+
+```json
+{
+    "error": false,
+    "message": "Generated 5 users and 10 pets",
+    "payload": {
+        "insertedUsers": [
+            {
+                "first_name": "Larissa",
+                "last_name": "Jagusch",
+                "email": "Natalie_Dreissigacker22@hotmail.com",
+                "password": "$2b$10$ZC7BbNIaHrcwN/zY0S2sPuLdlFE8TA9TUBzSC.gkkF83HbU34lR8i",
+                "role": "user",
+                "pets": [],
+                "_id": "685347febb981162833fed00",
+                "__v": 0
+            },
+			...
+        ],
+        "insertedPets": [
+            {
+                "name": "Annabel",
+                "specie": "rabbit",
+                "birthDate": "2018-12-12T00:57:21.808Z",
+                "adopted": false,
+                "image": "https://picsum.photos/seed/i1E8MB/400/400?blur=6",
+                "_id": "6853548b4e90d9956461aa0b",
+                "__v": 0
+            },
+			...
+        ]
+    }
+}
+```
+
+[Volver al menú](#menu)
+
+---
+
 <a name="logger"></a>
 
 ## 🧠 Logger Integrado con Winston
@@ -471,6 +591,8 @@ Se definieron los siguientes niveles de prioridad, de menor a mayor:
 
 Colores personalizados para cada nivel están definidos usando `winston.addColors()`.
 
+**Nota:** **La ejecucion de la aplicacion en modo `test` no generará logs.**
+
 ### 🌐 Entornos diferenciados
 
 #### 🔧 Development
@@ -484,6 +606,10 @@ Colores personalizados para cada nivel están definidos usando `winston.addColor
 - Loggea a partir del nivel `info`
 - Consola y archivo `logs/errors.log` (solo a partir de `error`)
 - Formato JSON estructurado
+
+#### 🧪 Test
+
+- NO LOGUEA
 
 ### 📂 Ruta del archivo de log
 
@@ -552,115 +678,9 @@ if (!user) {
 
 ---
 
-<a name="funcionalidad-de-mocking"></a>
-
-## 🧪 Funcionalidad de Mocking
-
-Este sistema permite generar datos falsos para pruebas o poblar la base de datos en desarrollo.
-
-<a name="endpoint-apimocksmockingusers"></a>
-
-### 📍 Endpoint `/api/mocks/mockingusers/:quantity`
-
-**Método:** `GET`
-
-**Descripción:** Genera usuarios falsos (no los inserta en la BD) de acuerdo a la cantidad recibida por query param "quantity", con las siguientes características:
-
-- `password` es siempre `"coder123"` (encriptada).
-- `role`: `"user"` o `"admin"`.
-- `pets`: array vacío.
-
-**Ejemplo de respuesta:**
-
-```json
-{
-	"status": "success",
-	"payload": [
-		{
-			"first_name": "Laura",
-			"last_name": "Meier",
-			"email": "laura.meier@example.com",
-			"password": "$2b$10$...",
-			"role": "user",
-			"pets": []
-		}
-	]
-}
-```
-
-[Volver al menú](#menu)
-
----
-
-<a name="endpoint-apimocksmockingpets"></a>
-
-### 📍 Endpoint `/api/mocks/mockingpets/:quantity`
-
-**Método:** `GET`
-
-**Descripción:** Genera mascotas falsas (no las inserta en la BD) de acuerdo a la cantidad recibida por query param "quantity", con los siguientes campos:
-
-- `name`, `specie`, `birthDate`, `image`
-- `adopted`: siempre `false`
-- No incluye `owner`
-
-**Ejemplo de respuesta:**
-
-```json
-{
-	"status": "success",
-	"payload": [
-		{
-			"name": "Milo",
-			"specie": "dog",
-			"birthDate": "2018-04-21T00:00:00.000Z",
-			"adopted": false,
-			"image": "https://picsum.photos/id/23/400/400"
-		}
-	]
-}
-```
-
-[Volver al menú](#menu)
-
----
-
-<a name="endpoint-apimocksgeneratedata"></a>
-
-### 📍 Endpoint `/api/mocks/generateData`
-
-**Método:** `POST`
-
-**Ruta:** `/api/mocks/generateData`
-
-**Parámetros (por body):**
-
-```json
-{
-	"users": 10,
-	"pets": 20
-}
-```
-
-**Descripción:** Inserta directamente en la base de datos la cantidad de usuarios y mascotas especificados por body.
-
-**Respuesta:**
-
-```json
-{
-	"status": "success",
-	"usersCreated": 10,
-	"petsCreated": 20
-}
-```
-
-[Volver al menú](#menu)
-
----
-
 <a name="swagger"></a>
 
-### 📘 Documentación de la API - Swagger
+### 📘 Swagger - Documentación de la API
 
 La API cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0). Esta documentación incluye detalles completos de cada recurso: users, pets, adoptions, sessions, mocks, entre otros.
 
@@ -682,6 +702,54 @@ http://localhost:[PORT]/api/docs
 Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutando la aplicación.
 
 [Volver al menú](#menu)
+
+---
+
+<a name="testing"></a>
+
+### 🧪 TESTING - Mocha y Supertest
+
+Este proyecto implementa una arquitectura de testing profesional que distingue entre tests unitarios y tests de integración, ejecutándolos en un entorno aislado para garantizar la consistencia y evitar conflictos con los datos reales.
+
+#### 🔧 Modo Test
+
+Cuando se ejecutan los tests, la aplicación se configura automáticamente en modo test mediante la variable de entorno NODE_ENV=test. Esto activa comportamientos especiales definidos en el código, como:
+
+- Uso de una base de datos exclusiva para pruebas (**adoptme-test**), evitando afectar los datos reales de desarrollo o producción.
+- **Desactivación del logger**, para evitar contaminación visual innecesaria durante las pruebas.
+
+Esto se controla desde el archivo config.js, que evalúa process.env.NODE_ENV para determinar si el entorno activo es de test y ajustar configuraciones internas.
+
+#### 📂 Estructura de Tests
+
+Los tests están organizados en carpetas separadas:
+
+test/
+├── unit/ // Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
+├── integration/ // Tests de integración (rutas, controladores, flujos completos)
+
+#### 🧪 Comandos
+
+Para ejecutar los tests, se definen scripts separados en package.json:
+
+```json
+"scripts": {
+  "test:unit": "NODE_ENV=test mocha test/unit/",
+  "test:integ": "NODE_ENV=test mocha test/integration/"
+}
+```
+
+Ejemplos de ejecución:
+
+```bash
+npm run test:unit     # Ejecuta sólo tests unitarios
+npm run test:integ    # Ejecuta sólo tests de integración
+```
+
+#### ⚠️ CONSIDERACION IMPORTANTE - Tests de integración
+
+**Los tests de integración `npm run test:integ`, NO requieren que se levante la aplicacion en paralelo**.
+La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
 ---
 
