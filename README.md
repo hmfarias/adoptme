@@ -385,7 +385,7 @@ info: Server is running on port 8080 - DB: backendIII - ENV: development
 | `PORT`        | 1. Línea de comandos `--port` o `-p`<br>2. Variable de entorno `.env`<br>3. Valor por defecto: `8080` |
 | `NODE_ENV`    | 1. Línea de comandos `--mode`<br>2. Variable de entorno `.env`<br>3. Valor por defecto: `development` |
 
-**Nota:** El modo de ejecución `test` no se asigna por linea de comando sino directamente al iniciar la aplicacion con `npm run test:integ` o `npm run test:unit`.
+**Nota:** El modo de ejecución `test` no se asigna por linea de comando sino directamente al iniciar la aplicacion con `npm run test`, `npm run test:integ` o `npm run test:unit`.
 
 ---
 
@@ -398,9 +398,9 @@ info: Server is running on port 8080 - DB: backendIII - ENV: development
 	"start": "node src/app.js",
 	"dev": "nodemon",
 	"prod": "node src/app.js --mode production",
-	"test:unit": "NODE_ENV=test mocha test/unit/",
-	"test:integ": "NODE_ENV=test mocha test/integration/",
-	"test": "NODE_ENV=test mocha \"test/**/*.test.js\""
+	"test:unit": "NODE_ENV=test mocha test/unit/", //test unitarios
+	"test:integ": "NODE_ENV=test mocha test/integration/", //test de integración
+	"test": "NODE_ENV=test mocha \"test/**/*.test.js\"" //corre todos los tests
 	},
 ```
 
@@ -734,8 +734,9 @@ Para ejecutar los tests, se definen scripts separados en package.json:
 
 ```json
 "scripts": {
-  "test:unit": "NODE_ENV=test mocha test/unit/",
-  "test:integ": "NODE_ENV=test mocha test/integration/"
+  "test:unit": "NODE_ENV=test mocha test/unit/", //test unitarios
+  "test:integ": "NODE_ENV=test mocha test/integration/" //test de integración
+  "test": "NODE_ENV=test mocha \"test/**/*.test.js\"" //corre todos los tests
 }
 ```
 
@@ -744,6 +745,7 @@ Ejemplos de ejecución:
 ```bash
 npm run test:unit     # Ejecuta sólo tests unitarios
 npm run test:integ    # Ejecuta sólo tests de integración
+npm run test          # Ejecuta todos los tests
 ```
 
 #### ⚠️ CONSIDERACION IMPORTANTE - Tests de integración
