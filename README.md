@@ -645,7 +645,7 @@ GET /api/loggerTest/fail    → Promesa rechazada sin catch
 GET /api/loggerTest/boom    → Error lanzado sin try/catch
 ```
 
-Todas estas rutas puedes probarlas en la coleccion Postman que se adjunta en el repositorio. (Ver la sección [Postman](#postman) ).
+**Todas estas rutas puedes probarlas en la coleccion Postman que se adjunta en el repositorio.** (Ver la sección [Postman](#postman) ).
 
 #### 🔥 Errores no manejados
 
