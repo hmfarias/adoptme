@@ -50,6 +50,14 @@ describe('Sessions Routes - Integration Test', () => {
 		expect(response.status).to.equal(200);
 		expect(response.body.error).to.be.false;
 		expect(response.headers['set-cookie']).to.exist;
+		const cookieResult = response.headers['set-cookie'][0];
+		expect(cookieResult).to.be.ok;
+		const cookie = {
+			name: cookieResult.split('=')[0],
+			value: cookieResult.split('=')[1],
+		};
+		expect(cookie.name).to.equal('coderCookie');
+		expect(cookie.value).to.be.ok;
 	});
 
 	it('POST /api/sessions/login -> should fail with wrong password', async () => {
@@ -96,6 +104,14 @@ describe('Sessions Routes - Integration Test', () => {
 		expect(response.status).to.equal(200);
 		expect(response.body.error).to.be.false;
 		expect(response.headers['set-cookie']).to.exist;
+		const cookieResult = response.headers['set-cookie'][0];
+		expect(cookieResult).to.be.ok;
+		const cookie = {
+			name: cookieResult.split('=')[0],
+			value: cookieResult.split('=')[1],
+		};
+		expect(cookie.name).to.equal('unprotectedCookie');
+		expect(cookie.value).to.be.ok;
 	});
 
 	it('GET /api/sessions/unprotectedCurrent -> should return user with valid unprotected cookie', async () => {

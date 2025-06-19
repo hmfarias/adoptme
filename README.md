@@ -28,6 +28,7 @@
 - [🧠 LOGGER Integrado con Winston](#logger)
 - [📘 SWAGGER - Documentación de la API](#swagger)
 - [ 🧪 TESTING - Mocha y Supertest](#testing)
+- [🐳 DOCKER - Instalación y ejecución](#docker)
 - [🟠 Postman Collection para hacer las pruebas](#postman)
 - [📞 Contacto](#contacto)
 
@@ -340,15 +341,29 @@ Antes de instalar la aplicación, asegúrate de contar con:
    Crea un archivo .env en la raíz del proyecto con la configuración de las credenciales (ver sección CREDENCIALES (.env)).
    Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).
 7. **Iniciar la aplicación en modo desarrollador:**
-   Ejecuta el siguiente comando:
+   Se pueden ejecutar los scripts de npm para iniciar la aplicación en modo desarrollo, producción o para correr todos los tests:
 
-   ```
-   npm run dev
-   o bien:
-   node src/app.js
+   ```bash
+   npm run dev // modo desarrrollo
    ```
 
-   Esto iniciará el servidor y mostrará un mensaje en la terminal indicando que la aplicación está corriendo en el puerto 8080 y conectada a la base de datos.
+   ```bash
+   npm run prod // modo producción
+   ```
+
+   ```bash
+   npm run test // para correr todos los tests
+   ```
+
+   ```bash
+   npm run test:unit // para correr test unitarios
+   ```
+
+   ```bash
+   npm run test:integ // para correr test de integración
+   ```
+
+   Esto iniciará el servidor y mostrará un mensaje en la consola indicando que la aplicación está corriendo, informará el puerto y la base de datos.
 
 ✅ ¡Listo! Ya puedes explorar y probar la aplicación en tu entorno local. 🚀
 
@@ -752,6 +767,51 @@ npm run test          # Ejecuta todos los tests
 
 **Los tests de integración `npm run test:integ`, NO requieren que se levante la aplicacion en paralelo**.
 La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
+
+---
+
+<a name="docker"></a>
+
+### 🐳 DOCKER - Instalación y ejecución
+
+Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
+
+### 🚀 Imagen Docker
+
+> 📦 La imagen está publicada en Docker Hub:
+> 👉 [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
+
+Para descargar la imagen, ejecuta el siguiente comando:
+
+```bash
+docker pull hmfarias/adoptme-app
+```
+
+✅ Listo!
+
+### 📦 Requisitos previos
+
+- Tener [Docker instalado](https://docs.docker.com/get-docker/)
+- Tener un archivo `.env` con tu configuración ( Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).)
+
+---
+
+### 🚀 Cómo ejecutar la app
+
+Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el siguiente comando:
+
+```bash
+docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
+```
+
+Este comando:
+• Expone el puerto 8080 (puede cambiarse si lo necesitás).
+• Carga tus variables de entorno desde .env.
+• Ejecuta automáticamente la app.
+
+### 🧪 Para correr tests
+
+Esta imagen está pensada para producción. Si se quiere ejecutar tests (unitarios o de integración), deberá clonar el proyecto y usar los scripts de package.json ( Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) ).
 
 ---
 
