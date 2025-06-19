@@ -277,19 +277,19 @@ Antes de ejecutar la aplicación, es necesario crear un archivo .env en la carpe
 ### 🟢 Contenido que debe tener el archivo .env:
 
 ```
-# Server Configuration
-PORT=8080                     # Port on which the server will run
-NODE_ENV=development          # Options: development | production
+PORT=8080
+NODE_ENV=development
 
-# Authentication
-SECRET_KEY="X9v$3jK@pLm7!zQwT2" # Used to sign JWT tokens
+SECRET_KEY="X9v$3jK@pLm7!zQwT2"
 
-#  Database Configuration (MongoDB Atlas)
 DB_USER=hmfarias
 DB_PASSWORD=QQATDs4SdAAWYa23
 DB_HOST=cluster0.fergg.mongodb.net
 APP_NAME=Cluster0
-DB_NAME=backendIII  # Target database name
+DB_NAME=adoptme
+
+DB_NAME_TEST=adoptme-test
+
 ```
 
 Este archivo a su vez es procesado por `/src/config/config.js`, que es el módulo que finalmente se encarga de cargar las variables de entorno y configurar los valores necesarios para el funcionamiento de la aplicación, como el puerto del servidor y la conexión a la base de datos.
