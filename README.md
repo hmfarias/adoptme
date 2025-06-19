@@ -805,9 +805,9 @@ docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
 ```
 
 Este comando:
-• Expone el puerto 8080 (puede cambiarse si lo necesitás).
-• Carga tus variables de entorno desde .env.
-• Ejecuta automáticamente la app.
+- Expone el puerto 8080 (puede cambiarse si lo necesitás).
+- Carga tus variables de entorno desde .env.
+- Ejecuta automáticamente la app.
 
 ### 🧪 Para correr tests
 
