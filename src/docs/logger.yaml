@@ -1,0 +1,83 @@
+paths:
+  /api/loggerTest:
+    get:
+      summary: Tests all Winston log levels.
+      tags:
+        - Logger
+      responses:
+        '200':
+          description: All log levels triggered successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: All log levels tested
+
+  /api/loggerTest/boom:
+    get:
+      summary: Triggers an uncaught exception to test global error handling.
+      tags:
+        - Logger
+      responses:
+        '500':
+          description: Uncaught exception triggered.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Unexpected server error - Try later or contact your administrator
+
+  /api/loggerTest/fail:
+    get:
+      summary: Triggers an unhandled promise rejection to test rejection handling.
+      tags:
+        - Logger
+      responses:
+        '500':
+          description: Rejected promise handled by global error middleware.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Unexpected server error - Try later or contact your administrator
+
+  /api/loggerTest/wrongRoute:
+    get:
+      summary: Catch-All route to test global error handling for non-existent routes.
+      tags:
+        - Logger
+      responses:
+        '500':
+          description: This route is used to test the global error handling for routes that do not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Route not found
+tags:
+  - name: Logger
+    description: Endpoints for testing Winston logs and global error handling

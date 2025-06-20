@@ -15,19 +15,6 @@ const boomTest = (req, res) => {
 	throw new Error('¡Exploded withouttry/catch!');
 };
 
-// const failPromiseTest = async (req, res, next) => {
-// 	try {
-// 		await Promise.reject(new Error('Promesa fallida'));
-// 	} catch (error) {
-// 		req.logger.error(`FailPromiseTest error: ${error.message}`, { stack: error.stack });
-// 		res.status(500).json({
-// 			error: true,
-// 			message: 'Promise rejected and caught properly',
-// 			payload: null,
-// 		});
-// 	}
-// };
-
 const failPromiseTest = (req, res, next) => {
 	Promise.reject(new Error('Promesa fallida')).catch(next);
 };

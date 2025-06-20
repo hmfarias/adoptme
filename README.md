@@ -469,7 +469,6 @@ node src/app.js -p 5000 --mode development
 
 Este sistema permite generar datos falsos para pruebas o poblar la base de datos.
 
-
 ### 📍 Endpoint `/api/mocks/mockingusers/:quantity`
 
 **Método:** `GET`
@@ -774,20 +773,25 @@ La aplicación ha sido diseñada para que los tests de integración utilicen dir
 
 Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
-### 🚀 Imagen Docker
+### 🚀 Imagenes Docker
 
-> 📦 La imagen está publicada en Docker Hub:
-> 👉 [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
+> 📦 Las imagenes están publicadas en Docker Hub:
+> 👉 MODO DESARROLLO: [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
+> 👉 MODO PRODUCCION: [hmfarias/adoptme-app-prod](https://hub.docker.com/r/hmfarias/adoptme-app-prod)
 
-Para descargar la imagen, ejecuta el siguiente comando:
+Para descargarlas, ejecuta el siguiente comando:
 
 ```bash
 docker pull hmfarias/adoptme-app
 ```
 
-✅ Listo!
+o bien para la versión de producción:
 
-### 📦 Requisitos previos
+```bash
+docker pull hmfarias/adoptme-app-prod
+```
+
+### 📦 Requisitos previos para ejecutar la aplicación
 
 - Tener [Docker instalado](https://docs.docker.com/get-docker/)
 - Tener un archivo `.env` con tu configuración ( Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).)
@@ -802,14 +806,24 @@ Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el sigui
 docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
 ```
 
+O bien para la versión de producción:
+
+```bash
+docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
+```
+
 Este comando:
+
 - Expone el puerto 8080 (puede cambiarse si lo necesitás).
 - Carga tus variables de entorno desde .env.
 - Ejecuta automáticamente la app.
 
 ### 🧪 Para correr tests
 
-Esta imagen está pensada para producción. Si se quieres ejecutar tests (unitarios o de integración), deberás clonar el proyecto y usar los scripts de package.json ( Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) ).
+No hay una imagen Docker para correr los tests.
+Las imágenes están pensadas para desarrollo o producción.
+Para ejecutar tests (unitarios o de integración), deberás clonar el proyecto y usar los scripts de package.json.
+Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) y ejecuta los tests con `npm run test` o `npm run test:integ` o `npm run test:unit`.
 
 ---
 
