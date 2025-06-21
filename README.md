@@ -713,8 +713,11 @@ if (!user) {
 #### ✅ Resultado
 
 ✔ Logs informativos y errores bien diferenciados
+
 ✔ Traza de errores críticos
+
 ✔ Captura global de fallos
+
 ✔ Mejora de mantenimiento y depuración
 
 [🔝 Volver al menú](#menu)
