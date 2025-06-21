@@ -808,9 +808,7 @@ docker pull hmfarias/adoptme-app-prod
 #### 1- ⚙️ Requisitos previos
 
 - Tener [Docker instalado](https://docs.docker.com/get-docker/)
-- Tener un archivo `.env` con tu configuración
-
-  🔐 Ver detalles en la sección [CREDENCIALES (.env)](#credenciales)
+- Tener un archivo `.env` con tu configuración. 🔐 Ver detalles en la sección [CREDENCIALES (.env)](#credenciales)
 
 #### 2- 🚀 Ejecutar el contenedor
 
