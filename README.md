@@ -741,6 +741,7 @@ Los tests están organizados en carpetas separadas:
 
 test/
 ├── unit/ --> Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
+
 ├── integration/ --> Tests de integración (rutas, controladores, flujos completos)
 
 #### 🧪 Comandos
