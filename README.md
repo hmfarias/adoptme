@@ -853,8 +853,6 @@ Luego ejecuta el siguiente comando:
 docker rm -f adoptme-app
 ```
 
----
-
 ### 🧪 Para correr tests
 
 No hay una imagen Docker para correr los tests.
