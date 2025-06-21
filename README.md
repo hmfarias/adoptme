@@ -816,7 +816,7 @@ docker pull hmfarias/adoptme-app-prod
 
 #### 2- 🚀 Ejecutar el contenedor
 
-Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el siguiente comando:
+Ubicado en la misma carpeta donde se encuentra el archivo`.env`, ejecuta el siguiente comando:
 
 Ejecutar en modo desarrollo:
 
