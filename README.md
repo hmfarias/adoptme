@@ -269,7 +269,7 @@ Esta asociación es esencial para representar de forma efectiva las relaciones e
 
 ## 🔐 CREDENCIALES (archivo .env)
 
-Antes de ejecutar la aplicación, es necesario crear un archivo .env en la carpeta raíz (donde se encuentra el package.json). Este archivo almacenará las variables de entorno necesarias para la configuración del servidor y la conexión a la base de datos. CON FINES DIDÁCTICOS SE DETALLA SU CONTENIDO PARA PODER PROBAR LA APLICACIÓN.
+Antes de ejecutar la aplicación o un contenedor de Docker, es necesario crear un archivo .env en la carpeta raíz (donde se encuentra el package.json). Este archivo almacenará las variables de entorno necesarias para la configuración del servidor y la conexión a la base de datos. CON FINES DIDÁCTICOS SE DETALLA SU CONTENIDO PARA PODER PROBAR LA APLICACIÓN.
 
 ### 🟢 Contenido que debe tener el archivo .env:
 
