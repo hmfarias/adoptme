@@ -50,7 +50,7 @@ Incluye además:
 
 Este repositorio está listo para desarrollo, testing, o despliegue en producción.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -103,7 +103,7 @@ Clases exportadas: ( en algunos casos estaban en singular y otros en plural y no
 
 - Se adaptaron las importaciones en base a los cambios de nombre realizados.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -151,7 +151,7 @@ const getAdoption = async (req, res) => {
 };
 ```
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -261,7 +261,7 @@ Con estas mejoras:
 
 Esta asociación es esencial para representar de forma efectiva las relaciones en un sistema de adopciones, y es compatible con el diseño RESTful y la documentación Swagger generada para la API.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -291,7 +291,7 @@ DB_NAME_TEST=adoptme-test
 
 Este archivo a su vez es procesado por `/src/config/config.js`, que es el módulo que finalmente se encarga de cargar las variables de entorno y configurar los valores necesarios para el funcionamiento de la aplicación, como el puerto del servidor y la conexión a la base de datos.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -367,7 +367,7 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 ✅ ¡Listo! Ya puedes explorar y probar la aplicación en tu entorno local. 🚀
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -462,7 +462,7 @@ node src/app.js -p 5000 --mode development
 ✔ Compatible con .env y CLI
 ✔ El logger y otras funcionalidades sensibles al entorno se adaptan automáticamente.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -570,7 +570,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -689,7 +689,7 @@ if (!user) {
 ✔ Captura global de fallos
 ✔ Mejora de mantenimiento y depuración
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -716,7 +716,7 @@ http://localhost:[PORT]/api/docs
 
 Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutando la aplicación.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -779,7 +779,7 @@ test/
 >
 > La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -876,7 +876,7 @@ docker rm -f adoptme-app
 >
 > 👉 Más detalles en la sección 🧪 [TESTING - Mocha y Supertest](#testing)
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -892,7 +892,7 @@ Puedes importar esta colección en Postman y realizar todas las operaciones disp
 📥 **Para descargar:**
 Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o presiona `Ctrl + S` en el navegador.
 
-[Volver al menú](#menu)
+[🔝 Volver al menú](#menu)
 
 ---
 
@@ -910,8 +910,4 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 
 ¿Dudas o sugerencias? No dudes en abrir un issue o contactarme directamente.
 
-[Volver al menú](#menu)
-
-```
-
-```
+[🔝 Volver al menú](#menu)
