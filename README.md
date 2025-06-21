@@ -384,7 +384,7 @@ Gracias a esta implementación, es posible ejecutar la aplicación con distintas
 Luego de poner a correr la aplicación, se podrá ver la siguiente información en la consola de comandos para confirmar que el servidor está corriendo en el puerto y con la configuración deseada:
 
 ```
-info: Server is running on port [PUERTO] - DB: backendIII - ENV: [MODO DE EJECUCIÓN].
+info: Server is running on port [PUERTO] - DB: [Nombre DB] - ENV: [MODO DE EJECUCIÓN].
 ```
 
 Ejemplo:
