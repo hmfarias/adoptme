@@ -853,22 +853,21 @@ Luego ejecuta el siguiente comando:
 docker rm -f adoptme-app
 ```
 
-### 🧪 Para correr tests
-
-No hay una imagen Docker para correr los tests.
-Las imágenes están pensadas para desarrollo o producción.
-Si querés ejecutar los tests (unitarios o de integración), deberás clonar el repositorio y usar los scripts de package.json.
-🔧 Ver sección 📥 [Instalacion local](#instalacionlocal)
-
-Luego usá los comandos:
-
-```bash
-npm run test
-npm run test:unit
-npm run test:integ
-```
-
-👉 Más detalles en la sección 🧪 [TESTING - Mocha y Supertest](#testing)
+> ### 🧪 Para correr tests
+>
+> No hay una imagen Docker para correr los tests.
+> Las imágenes están pensadas para desarrollo o producción.
+> Si querés ejecutar los tests (unitarios o de integración), deberás clonar el repositorio y usar los scripts de package.json.
+> 🔧 Ver sección 📥 [Instalacion local](#instalacionlocal)
+> Luego usá los comandos:
+>
+> ```bash
+> npm run test
+> npm run test:unit
+> npm run test:integ
+> ```
+>
+> 👉 Más detalles en la sección 🧪 [TESTING - Mocha y Supertest](#testing)
 
 [Volver al menú](#menu)
 
@@ -878,12 +877,12 @@ npm run test:integ
 
 ## ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png) Postman Collection
 
-En el repositorio podrás encontrar la colección de Postman para facilitar la prueba de los endpoints de la API.  
+En el repositorio podrás encontrar la colección de Postman para facilitar la prueba de los endpoints de la API.
 Puedes importar esta colección en Postman y realizar todas las operaciones disponibles, incluyendo las rutas de usuarios, mascotas y mockeo de datos.
 
 ➡️ [Ver colección AdoptMe (archivo JSON)](https://raw.githubusercontent.com/hmfarias/adoptme/main/AdoptMe.postman_collection.json)
 
-📥 **Para descargar:**  
+📥 **Para descargar:**
 Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o presiona `Ctrl + S` en el navegador.
 
 [Volver al menú](#menu)
@@ -894,11 +893,15 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 
 ## 📫 Contacto
 
-**Marcelo Farias**  
-📱 +54 9 351 260 1888  
-📧 hmfarias7@gmail.com  
+**Marcelo Farias**
+📱 +54 9 351 260 1888
+📧 hmfarias7@gmail.com
 💼 [LinkedIn - Marcelo Farias](https://www.linkedin.com/in/hugo-marcelo-farias/)
 
 ¿Dudas o sugerencias? No dudes en abrir un issue o contactarme directamente.
 
 [Volver al menú](#menu)
+
+```
+
+```
