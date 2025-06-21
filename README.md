@@ -611,23 +611,6 @@ Esta aplicación utiliza un sistema de logging robusto implementado con [Winston
 - Escribir logs estructurados en producción
 - Capturar errores no manejados
 
-### 🛠️ Configuración de niveles personalizados
-
-Se definieron los siguientes niveles de prioridad, de menor a mayor:
-
-| Nivel     | Uso esperado                                    | Entorno          |
-| --------- | ----------------------------------------------- | ---------------- |
-| `debug`   | Detalles para desarrollo                        | ✅ Solo en DEV   |
-| `http`    | Logs de solicitudes HTTP                        | ✅ Solo en DEV   |
-| `info`    | Operaciones exitosas, mensajes generales        | ✅ DEV / ✅ PROD |
-| `warning` | Comportamientos inesperados, sin bloquear       | ✅ DEV / ✅ PROD |
-| `error`   | Fallos que permiten continuar la ejecución      | ✅ DEV / ✅ PROD |
-| `fatal`   | Errores críticos que deben ser tratados urgente | ✅ DEV / ✅ PROD |
-
-Colores personalizados para cada nivel están definidos usando `winston.addColors()`.
-
-**Nota:** **La ejecucion de la aplicacion en modo `test` no generará logs.**
-
 ---
 
 ### 🌐 Entornos diferenciados
