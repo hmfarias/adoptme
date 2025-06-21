@@ -726,24 +726,7 @@ Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutand
 
 Este proyecto implementa una arquitectura de testing profesional que distingue entre tests unitarios y tests de integración, ejecutándolos en un entorno aislado para garantizar la consistencia y evitar conflictos con los datos reales.
 
-#### 🔧 Modo Test
-
-Cuando se ejecutan los tests, la aplicación se configura automáticamente en modo test mediante la variable de entorno NODE_ENV=test. Esto activa comportamientos especiales definidos en el código, como:
-
-- Uso de una base de datos exclusiva para pruebas (**adoptme-test**), evitando afectar los datos reales de desarrollo o producción.
-- **Desactivación del logger**, para evitar contaminación visual innecesaria durante las pruebas.
-
-Esto se controla desde el archivo config.js, que evalúa process.env.NODE_ENV para determinar si el entorno activo es de test y ajustar configuraciones internas.
-
-#### 📂 Estructura de Tests
-
-Los tests están organizados en carpetas separadas:
-
-```
-test/
-├── unit/ --> Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
-├── integration/ --> Tests de integración (rutas, controladores, flujos completos)
-```
+Se han incluido un total de 82 tests, (48 de integración para todas las rutas de la API y 34 unitarios para los módulos de la aplicación).
 
 #### 🧪 Comandos
 
@@ -771,9 +754,28 @@ npm run test:integ    # Ejecuta sólo tests de integración
 npm run test          # Ejecuta todos los tests
 ```
 
-> #### ‼️ CONSIDERACION IMPORTANTE - Tests de integración
+#### 🔧 Modo Test
+
+Cuando se ejecutan los tests, la aplicación se configura automáticamente en modo test mediante la variable de entorno NODE_ENV=test. Esto activa comportamientos especiales definidos en el código, como:
+
+- Uso de una base de datos exclusiva para pruebas (**adoptme-test**), evitando afectar los datos reales de desarrollo o producción.
+- **Desactivación del logger**, para evitar contaminación visual innecesaria durante las pruebas.
+
+Esto se controla desde el archivo config.js, que evalúa process.env.NODE_ENV para determinar si el entorno activo es de test y ajustar configuraciones internas.
+
+#### 📂 Estructura de Tests
+
+Los tests están organizados en carpetas separadas:
+
+```
+test/
+├── unit/ --> Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
+├── integration/ --> Tests de integración (rutas, controladores, flujos completos)
+```
+
+> #### ‼️ CONSIDERACION IMPORTANTE
 >
-> **Los tests de integración `"npm run test:integ"`, ⚠️ NO REQUIEREN QUE SE LEVANTE LA APLICACION EN PARALLELO**⚠️.
+> ⚠️**Los tests de integración NO REQUIEREN QUE SE LEVANTE LA APLICACION EN PARALLELO**⚠️.
 > La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
 ---
