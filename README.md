@@ -842,25 +842,15 @@ O bien puedes ejecutar las consultas utilizando la coleccion Postman que se adju
 
 ---
 
-#### 3- ⚠️ Detener el contenedor y liberar el puerto para futuro uso:
-
-**Paso 1: 🛑 Detener el contenedor:**
+#### 3- 🛑 Detener el contenedor y liberar el puerto para futuro uso:
 
 Puedes presionar `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor, o bien, abrir otra terminal.
 
 Luego ejecuta el siguiente comando:
 
 ```bash
-docker stop adoptme-app
+docker rm -f adoptme-app
 ```
-
-**Paso 2: ❌ Eliminar el contenedor:**
-
-```bash
-docker rm adoptme-app
-```
-
-Estos dos pasos detendrán el contenedor y liberarán el puerto asignado.
 
 ---
 
