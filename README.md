@@ -756,14 +756,20 @@ Para ejecutar los tests, se definen scripts separados en package.json:
 
 ```bash
 npm run test:unit     # Ejecuta sólo tests unitarios
+```
+
+```bash
 npm run test:integ    # Ejecuta sólo tests de integración
+```
+
+```bash
 npm run test          # Ejecuta todos los tests
 ```
 
-#### ‼️ CONSIDERACION IMPORTANTE - Tests de integración
-
-**Los tests de integración `npm run test:integ`, ⚠️ NO REQUIEREN QUE SE LEVANTE LA APLICACION EN PARALLELO**⚠️.
-La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
+> #### ‼️ CONSIDERACION IMPORTANTE - Tests de integración
+>
+> **Los tests de integración `"npm run test:integ"`, ⚠️ NO REQUIEREN QUE SE LEVANTE LA APLICACION EN PARALLELO**⚠️.
+> La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
 ---
 
