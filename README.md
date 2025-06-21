@@ -783,13 +783,13 @@ Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
 📦 Las imagenes están publicadas en Docker Hub:
 
-> 👉 MODO DESARROLLO: [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
+> 👉 Modo desarrollo: [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
 
-> 👉 MODO PRODUCCION: [hmfarias/adoptme-app-prod](https://hub.docker.com/r/hmfarias/adoptme-app-prod)
+> 👉 Modo producción: [hmfarias/adoptme-app-prod](https://hub.docker.com/r/hmfarias/adoptme-app-prod)
 
 ### ⤵️ Descarga de las imágenes
 
-Ejecuta el siguiente comando:
+Ejecutá uno de los siguientes comandos (o ambos si lo deseas):
 
 ```bash
 docker pull hmfarias/adoptme-app
@@ -806,7 +806,8 @@ docker pull hmfarias/adoptme-app-prod
 #### 1- ⚙️ Requisitos previos
 
 - Tener [Docker instalado](https://docs.docker.com/get-docker/)
-- Tener un archivo `.env` con tu configuración ( Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).)
+- Tener un archivo `.env` con tu configuración
+  - > 🔐 Ver detalles en la sección [CREDENCIALES (.env)](#credenciales)
 
 ---
 
@@ -814,23 +815,23 @@ docker pull hmfarias/adoptme-app-prod
 
 Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el siguiente comando:
 
-Modo desarrollo:
+Ejecutar en modo desarrollo:
 
 ```bash
 docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app
 ```
 
-Modo producción:
+Ejecutar en modo producción:
 
 ```bash
 docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
 ```
 
-Este comando:
+📌 Este comando:
 
 - Inicia la aplicación en el puerto 8080.
-- Carga tus variables de entorno desde el archivo.env.
-- Ejecuta automáticamente la app.
+- Carga tus variables de entorno desde el archivo `.env`.
+- Ejecuta automáticamente la aplicación.
 
 A partir de ahora, puedes acceder a la aplicación en tu navegador a través del puerto 8080 y visitar por ejemplo la documentacion de la API:
 
@@ -838,11 +839,12 @@ A partir de ahora, puedes acceder a la aplicación en tu navegador a través del
 http://localhost:8080/api/docs
 ```
 
-O bien puedes ejecutar las consultas utilizando la coleccion Postman que se adjunta en el repositorio. Ve a la sección [Postman](#postman) para más información.
+O bien, usar la colección de **Postman** incluida en este repositorio.
+👉 Ver sección 🧪 [Postman](#postman) para más información.
 
 ---
 
-#### 3- 🛑 Detener el contenedor y liberar el puerto para futuro uso:
+#### 3- 🛑 Detener el contenedor y liberar el puerto:
 
 Puedes presionar `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor, o bien, abrir otra terminal.
 
@@ -858,8 +860,18 @@ docker rm -f adoptme-app
 
 No hay una imagen Docker para correr los tests.
 Las imágenes están pensadas para desarrollo o producción.
-Para ejecutar tests (unitarios o de integración), deberás clonar el proyecto y usar los scripts de package.json.
-Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) y ejecuta los tests con `npm run test` o `npm run test:integ` o `npm run test:unit`. (verifica la sección [TESTING - Mocha y Supertest](#testing))
+Si querés ejecutar los tests (unitarios o de integración), deberás clonar el repositorio y usar los scripts de package.json.
+🔧 Ver sección 📥 [Instalacion local](#instalacionlocal)
+
+Luego usá los comandos:
+
+```bash
+npm run test
+npm run test:unit
+npm run test:integ
+```
+
+👉 Más detalles en la sección 🧪 [TESTING - Mocha y Supertest](#testing)
 
 ---
 
