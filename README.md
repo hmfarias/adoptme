@@ -390,7 +390,7 @@ info: Server is running on port [PUERTO] - DB: [Nombre DB] - ENV: [MODO DE EJECU
 Ejemplo:
 
 ```
-info: Server is running on port 8080 - DB: backendIII - ENV: development
+info: Server is running on port 8080 - DB: adoptme - ENV: development
 ```
 
 ### 🛠️ Prioridad de resolución para cada configuración
@@ -871,6 +871,8 @@ npm run test:integ
 ```
 
 👉 Más detalles en la sección 🧪 [TESTING - Mocha y Supertest](#testing)
+
+[Volver al menú](#menu)
 
 ---
 
