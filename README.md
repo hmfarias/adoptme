@@ -776,6 +776,7 @@ test/
 > #### ‼️ CONSIDERACION IMPORTANTE
 >
 > ⚠️**Los tests de integración NO REQUIEREN QUE SE LEVANTE LA APLICACION EN PARALLELO**⚠️.
+>
 > La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
 ---
