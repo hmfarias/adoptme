@@ -894,8 +894,11 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 ## 📫 Contacto
 
 **Marcelo Farias**
+
 📱 +54 9 351 260 1888
+
 📧 hmfarias7@gmail.com
+
 💼 [LinkedIn - Marcelo Farias](https://www.linkedin.com/in/hugo-marcelo-farias/)
 
 ¿Dudas o sugerencias? No dudes en abrir un issue o contactarme directamente.
