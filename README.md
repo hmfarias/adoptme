@@ -297,7 +297,7 @@ Este archivo a su vez es procesado por `/src/config/config.js`, que es el módul
 
 <a name="instalacionlocal"></a>
 
-## 🔧 Instalación
+## 🔧 Instalación Local
 
 ### **Prerequisitos:**
 
