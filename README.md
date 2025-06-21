@@ -808,6 +808,8 @@ docker pull hmfarias/adoptme-app-prod
 - Tener [Docker instalado](https://docs.docker.com/get-docker/)
 - Tener un archivo `.env` con tu configuración ( Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).)
 
+---
+
 #### 2- 🚀 Ejecutar el contenedor
 
 Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el siguiente comando:
@@ -831,6 +833,16 @@ Este comando:
 - Inicia la aplicación en el puerto 8080.
 - Carga tus variables de entorno desde el archivo.env.
 - Ejecuta automáticamente la app.
+
+A partir de ahora, puedes acceder a la aplicación en tu navegador a través del puerto 8080 y visitar la documentacion de la API:
+
+```
+http://localhost:8080/api/docs
+```
+
+O bien puedes ejecutar las consultas utilizando la coleccion Postman que se adjunta en el repositorio. Ve a la sección [Postman](#postman) para más información.
+
+---
 
 #### 3- ⚠️ Detener el contenedor y liberar el puerto para futuro uso:
 
