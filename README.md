@@ -848,7 +848,9 @@ O bien puedes ejecutar las consultas utilizando la coleccion Postman que se adju
 
 **Paso 1: 🛑 Detener el contenedor:**
 
-Puedes presionar `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor, o bien, abrir otra terminal. Luego ejecuta el siguiente comando:
+Puedes presionar `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor, o bien, abrir otra terminal.
+
+Luego ejecuta el siguiente comando:
 
 ```bash
 docker stop adoptme-app
