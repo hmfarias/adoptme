@@ -824,7 +824,7 @@ Este comando:
 - Carga tus variables de entorno desde el archivo.env.
 - Ejecuta automáticamente la app.
 
-##### ⚠️ Para detener el contenedor y liberar el puerto para futuro uso:
+#### ⚠️ Para detener el contenedor y liberar el puerto para futuro uso:
 
 **Paso 1: 🛑 Detener el contenedor:**
 
