@@ -740,6 +740,7 @@ Esto se controla desde el archivo config.js, que evalúa process.env.NODE_ENV pa
 Los tests están organizados en carpetas separadas:
 
 test/
+
 ├── unit/ --> Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
 
 ├── integration/ --> Tests de integración (rutas, controladores, flujos completos)
