@@ -30,10 +30,11 @@
 - [📞 Contacto](#contacto)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 <a name="intro"></a>
 
 ## 🐾 AdoptMe - Backend API para Gestión de Adopciones de Mascotas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 AdoptMe es una aplicación backend desarrollada con **Node.js**, **Express** y **MongoDB**, diseñada para gestionar un sistema completo de **adopción de mascotas**. Ofrece endpoints RESTful para la administración de usuarios, mascotas y adopciones, así como funcionalidades de autenticación, mocking de datos con `faker`, manejo de sesiones, testing, documentación con Swagger, y un sistema de logging profesional con Winston.
 
@@ -57,6 +58,8 @@ Este repositorio está listo para desarrollo, testing, o despliegue en producci�
 <a name="revision-del-codigo"></a>
 
 ## 🔍 Revisión del código
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="nombres-de-archivos"></a>
 
@@ -202,6 +205,8 @@ const deleteUser = async (req, res) => {
 
 ### 🧬 POPULATE
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 <a name="populate-userspets"></a>
 
 #### 👤 Asociación entre Usuarios y Mascotas
@@ -270,6 +275,8 @@ Esta asociación es esencial para representar de forma efectiva las relaciones e
 
 ## 🔐 CREDENCIALES (archivo .env)
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Antes de ejecutar la aplicación o un contenedor de Docker, es necesario crear un archivo .env en la carpeta raíz (donde se encuentra el package.json). Este archivo almacenará las variables de entorno necesarias para la configuración del servidor y la conexión a la base de datos. CON FINES DIDÁCTICOS SE DETALLA SU CONTENIDO PARA PODER PROBAR LA APLICACIÓN.
 
 ### 🟢 Contenido que debe tener el archivo .env:
@@ -299,6 +306,8 @@ Este archivo a su vez es procesado por `/src/config/config.js`, que es el módul
 <a name="instalacionlocal"></a>
 
 ## 🔧 Instalación Local
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ### **Prerequisitos:**
 
@@ -376,6 +385,8 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 ## ⚙️ Configuración del Puerto y del Entorno desde Línea de Comandos
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 La aplicación permite establecer de forma dinámica tanto el **puerto de ejecución** como el **modo (`development` o `production`)** a través de la línea de comandos, utilizando la librería [Commander](https://github.com/tj/commander.js).
 
 El modo de ejecucion `test` se configura al iniciar la aplicacion con `npm run test, npm run test:integ o npm run test:unit`, y las diferencias con los otros modos consisten en que No se registran logs, el puerto es `8080` y la base de datos es `adoptme-test`.
@@ -393,6 +404,8 @@ Ejemplo:
 ```
 info: Server is running on port 8080 - DB: adoptme - ENV: development
 ```
+
+---
 
 ### 🛠️ Prioridad de resolución para cada configuración
 
@@ -471,6 +484,8 @@ node src/app.js -p 5000 --mode development
 
 ## 🎭 Funcionalidad de Mocking
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Este sistema permite generar datos falsos para pruebas o poblar la base de datos.
 
 ### 📍 Endpoint `/api/mocks/mockingusers/:quantity`
@@ -501,6 +516,8 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 }
 ```
 
+---
+
 ### 📍 Endpoint `/api/mocks/mockingpets?quantity=1`
 
 **Método:** `GET`
@@ -528,6 +545,8 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 	]
 }
 ```
+
+---
 
 ### 📍 Endpoint `/api/mocks/generateData`
 
@@ -579,6 +598,8 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 ## 🧠 Logger Integrado con Winston
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Esta aplicación utiliza un sistema de logging robusto implementado con [Winston](https://github.com/winstonjs/winston), que reemplaza completamente el uso de `console.log` y `console.error`, mejorando el monitoreo de errores y eventos tanto en desarrollo como en producción.
 
 ### 🧩 Objetivos del logger
@@ -607,23 +628,39 @@ Colores personalizados para cada nivel están definidos usando `winston.addColor
 
 **Nota:** **La ejecucion de la aplicacion en modo `test` no generará logs.**
 
+---
+
 ### 🌐 Entornos diferenciados
 
-#### 🔧 Development
+### 🎚️ Niveles del Logger
 
-- Loggea a partir del nivel `debug`
+Los niveles de log implementados en esta aplicación son los siguientes (de mayor a menor severidad):
+
+| Nivel     | Valor | Descripción                                           |
+| --------- | ----- | ----------------------------------------------------- |
+| `fatal`   | 0     | Errores críticos que requieren atención urgente       |
+| `error`   | 1     | Errores que no detienen la app                        |
+| `warning` | 2     | Algo inesperado, pero no crítico                      |
+| `info`    | 3     | Información útil y eventos exitosos ⬆️ **Producción** |
+| `http`    | 4     | Registro de las solicitudes HTTP                      |
+| `debug`   | 5     | Detalles técnicos para desarrollo ⬆️ **Desarrollo**   |
+
+🔹 **Modo `development`**: loguea desde `debug` (nivel 5) incluyendo los niveles 4, 3 y 2.
+
 - Solo en consola
 - Salida colorizada y legible
 
-#### 🚀 Production
+🔸 **Modo `production`**: loguea desde `info` (nivel 3) hacia los niveles 2, 1 y 0.
 
-- Loggea a partir del nivel `info`
-- Consola y archivo `logs/errors.log` (solo a partir de `error`)
+- En consola
+- En archivo `logs/errors.log` (solo a partir de `error`)
 - Formato JSON estructurado
 
-#### 🧪 Test
+🟩 **Modo `test`**:
 
 - NO LOGUEA
+
+---
 
 ### 📂 Ruta del archivo de log
 
@@ -646,9 +683,12 @@ También se incluyeron pruebas para errores no capturados:
 ```
 GET /api/loggerTest/fail    → Promesa rechazada sin catch
 GET /api/loggerTest/boom    → Error lanzado sin try/catch
+GET /api/loggerTest/wrongRoute    → Error de ruta no encontrada
 ```
 
 **Todas estas rutas puedes probarlas en la coleccion Postman que se adjunta en el repositorio.** (Ver la sección [Postman](#postman) ).
+
+---
 
 #### 🔥 Errores no manejados
 
@@ -660,6 +700,8 @@ process.on('unhandledRejection', (reason, promise) => { ... });
 ```
 
 Estos errores son logueados con nivel **fatal** y detallan el stack trace.
+
+---
 
 #### 🔁 Reemplazo completo de console.log y console.error
 
@@ -673,6 +715,8 @@ req.logger.fatal();
 ```
 
 Esto garantiza un seguimiento coherente y profesional de eventos y errores.
+
+---
 
 #### 📈 Ejemplo de uso en controlador
 
@@ -697,6 +741,8 @@ if (!user) {
 <a name="swagger"></a>
 
 ## 📘 Swagger - Documentación de la API
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 La API cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0). Esta documentación incluye detalles completos de cada recurso: users, pets, adoptions, sessions, mocks, entre otros.
 
@@ -724,6 +770,8 @@ Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutand
 <a name="testing"></a>
 
 ## 🧪 TESTING - Mocha y Supertest
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Este proyecto implementa una arquitectura de testing profesional que distingue entre tests unitarios y tests de integración, ejecutándolos en un entorno aislado para garantizar la consistencia y evitar conflictos con los datos reales.
 
@@ -787,6 +835,8 @@ test/
 <a name="docker"></a>
 
 ## 🐳 DOCKER - Instalación y ejecución
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
@@ -893,6 +943,8 @@ docker rm -f adoptme-app
 
 ## ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png) Postman Collection
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 En el repositorio podrás encontrar la colección de Postman para facilitar la prueba de los endpoints de la API.
 Puedes importar esta colección en Postman y realizar todas las operaciones disponibles, incluyendo las rutas de usuarios, mascotas y mockeo de datos.
 
@@ -908,6 +960,8 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 <a name="contacto"></a>
 
 ## 📫 Contacto
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **Marcelo Farias**
 
