@@ -812,8 +812,6 @@ docker pull hmfarias/adoptme-app-prod
 
   🔐 Ver detalles en la sección [CREDENCIALES (.env)](#credenciales)
 
----
-
 #### 2- 🚀 Ejecutar el contenedor
 
 Ubicado en la misma carpeta donde se encuentra el archivo`.env`, puedes ejecutar los siguientes comandos:
@@ -844,8 +842,6 @@ http://localhost:8080/api/docs
 
 O bien, usar la colección de **Postman** incluida en este repositorio.
 👉 Ver sección 🧪 [Postman](#postman) para más información.
-
----
 
 #### 3- 🛑 Detener el contenedor y liberar el puerto:
 
