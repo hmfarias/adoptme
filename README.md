@@ -195,6 +195,8 @@ const deleteUser = async (req, res) => {
 };
 ```
 
+[🔝 Volver al menú](#menu)
+
 ---
 
 <a name="populate"></a>
