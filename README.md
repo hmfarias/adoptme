@@ -730,14 +730,25 @@ if (!user) {
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-La API cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0). Esta documentación incluye detalles completos de cada recurso: users, pets, adoptions, sessions, mocks, entre otros.
+La API cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0). Esta documentación incluye detalles completos de cada recurso: users, pets, adoptions, sessions, mocks, entre otros y manejo de errores bien tipificados (400, 404, 422, 500, etc.)
 
-#### ✅ Características destacadas:
+#### Estructura de archivos
 
-- Documentación dividida por módulos en archivos YAML (users.yaml, pets.yaml, sessions.yaml, etc.)
-- Esquemas reutilizables definidos en components.yaml (errores comunes, respuestas genéricas)
-- Manejo de errores bien tipificados (400, 404, 422, 500, etc.)
-- Generación de datos falsos para pruebas desde endpoints /mockingusers, /mockingpets, /generateData
+La documentación se encuentra dividida en módulos, cada uno de ellos en un archivo YAML (users.yaml, pets.yaml, sessions.yaml, etc.).
+
+Los esquemas de respuestas y errores se encuentran en un archivo `components.yaml`, reutilizables por todos los módulos.
+
+```
+docs/
+├── adoptions.yaml -> Documentación de las rutas de la API para la adopciones
+├── components.yaml -> Esquemas de respuestas y errores reutilizables
+├── logger.yaml -> Documentación de las rutas de la API para probar los niveles del logger
+├── mocks.yaml -> Documentación de las rutas de la API para los mocks
+├── pets.yaml -> Documentación de las rutas de la API para los mascotas
+├── sessions.yaml -> Documentación de las rutas de la API para las sesiones
+├── users.yaml -> Documentación de las rutas de la API para los usuarios
+├── index.html -> Página de inicio de la documentación
+```
 
 #### 📍 Acceso
 
