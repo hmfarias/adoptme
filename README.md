@@ -779,6 +779,8 @@ test/
 >
 > La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
+[Volver al menú](#menu)
+
 ---
 
 <a name="docker"></a>
