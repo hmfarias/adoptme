@@ -786,7 +786,7 @@ test/
 
 Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
-### 🖼️ Imagenes Docker
+### 🖼️ Imágenes Docker
 
 📦 Las imagenes están publicadas en Docker Hub:
 
