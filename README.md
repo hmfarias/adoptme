@@ -809,7 +809,7 @@ docker pull hmfarias/adoptme-app-prod
 
 - Tener [Docker instalado](https://docs.docker.com/get-docker/)
 - Tener un archivo `.env` con tu configuración
-  - > 🔐 Ver detalles en la sección [CREDENCIALES (.env)](#credenciales)
+  🔐 Ver detalles en la sección [CREDENCIALES (.env)](#credenciales)
 
 ---
 
