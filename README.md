@@ -692,7 +692,7 @@ if (!user) {
 
 <a name="swagger"></a>
 
-### 📘 Swagger - Documentación de la API
+## 📘 Swagger - Documentación de la API
 
 La API cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0). Esta documentación incluye detalles completos de cada recurso: users, pets, adoptions, sessions, mocks, entre otros.
 
@@ -719,7 +719,7 @@ Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutand
 
 <a name="testing"></a>
 
-### 🧪 TESTING - Mocha y Supertest
+## 🧪 TESTING - Mocha y Supertest
 
 Este proyecto implementa una arquitectura de testing profesional que distingue entre tests unitarios y tests de integración, ejecutándolos en un entorno aislado para garantizar la consistencia y evitar conflictos con los datos reales.
 
@@ -737,8 +737,8 @@ Esto se controla desde el archivo config.js, que evalúa process.env.NODE_ENV pa
 Los tests están organizados en carpetas separadas:
 
 test/
-├── unit/ // Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
-├── integration/ // Tests de integración (rutas, controladores, flujos completos)
+├── unit/ --> Tests unitarios (users, pets, adoptions, utils, DAOs, DTOs, etc.)
+├── integration/ --> Tests de integración (rutas, controladores, flujos completos)
 
 #### 🧪 Comandos
 
@@ -752,7 +752,7 @@ Para ejecutar los tests, se definen scripts separados en package.json:
 }
 ```
 
-Ejemplos de ejecución:
+**Para ejecutar los tests:**
 
 ```bash
 npm run test:unit     # Ejecuta sólo tests unitarios
@@ -760,16 +760,16 @@ npm run test:integ    # Ejecuta sólo tests de integración
 npm run test          # Ejecuta todos los tests
 ```
 
-#### ⚠️ CONSIDERACION IMPORTANTE - Tests de integración
+#### ‼️ CONSIDERACION IMPORTANTE - Tests de integración
 
-**Los tests de integración `npm run test:integ`, NO requieren que se levante la aplicacion en paralelo**.
+**Los tests de integración `npm run test:integ`, ⚠️ NO REQUIEREN QUE SE LEVANTE LA APLICACION EN PARALLELO**⚠️.
 La aplicación ha sido diseñada para que los tests de integración utilicen directamente la instancia de la app (app.js) sin iniciar el servidor (app.listen(...)). y permite que herramientas como Supertest interactúen con la aplicación de manera controlada y aislada.
 
 ---
 
 <a name="docker"></a>
 
-### 🐳 DOCKER - Instalación y ejecución
+## 🐳 DOCKER - Instalación y ejecución
 
 Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
@@ -863,7 +863,7 @@ Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal)
 
 <a name="postman"></a>
 
-### ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png) Postman Collection
+## ![Postman Icon](https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png) Postman Collection
 
 En el repositorio podrás encontrar la colección de Postman para facilitar la prueba de los endpoints de la API.  
 Puedes importar esta colección en Postman y realizar todas las operaciones disponibles, incluyendo las rutas de usuarios, mascotas y mockeo de datos.
