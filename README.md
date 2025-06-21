@@ -829,7 +829,9 @@ Este comando:
 **Paso 1: 🛑 Detener el contenedor:**
 
 - Puedes detener el contenedor de dos maneras:
+
   **Opción 1:** Presiona `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor.
+
   **Opción 2:** Abre otra terminal y ejecuta el siguiente comando:
 
 ```bash
