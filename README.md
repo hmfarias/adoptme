@@ -800,32 +800,58 @@ docker pull hmfarias/adoptme-app-prod
 
 ---
 
-### 🚀 Cómo ejecutar la app
+### 🚀 Cómo ejecutar el contenedor
 
 Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el siguiente comando:
 
-```bash
-docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
-```
-
-O bien para la versión de producción:
+Para ejecutar el contenedor en modo producción:
 
 ```bash
 docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
+docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
+```
+
+O bien para la versión de desarrollo:
+
+```bash
+docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
+docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app
 ```
 
 Este comando:
 
-- Expone el puerto 8080 (puede cambiarse si lo necesitás).
-- Carga tus variables de entorno desde .env.
+- Inicia la aplicación en el puerto 8080.
+- Carga tus variables de entorno desde el archivo.env.
 - Ejecuta automáticamente la app.
+
+##### ⚠️ Para detener el contenedor y liberar el puerto para futuro uso:
+
+**Paso 1: 🛑 Detener el contenedor:**
+
+- Puedes detener el contenedor de dos maneras:
+  **Opción 1:** Presiona `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor.
+  **Opción 2:** Abre otra terminal y ejecuta el siguiente comando:
+
+```bash
+docker stop adoptme-app
+```
+
+**Paso 2: ❌ Eliminar el contenedor:**
+
+```bash
+docker rm adoptme-app
+```
+
+Esto finalizará el contenedor y liberará el puerto asignado.
+
+---
 
 ### 🧪 Para correr tests
 
 No hay una imagen Docker para correr los tests.
 Las imágenes están pensadas para desarrollo o producción.
 Para ejecutar tests (unitarios o de integración), deberás clonar el proyecto y usar los scripts de package.json.
-Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) y ejecuta los tests con `npm run test` o `npm run test:integ` o `npm run test:unit`.
+Consulta la instalacion en local en la sección [Instalacion](#instalacionlocal) y ejecuta los tests con `npm run test` o `npm run test:integ` o `npm run test:unit`. (verifica la sección [TESTING - Mocha y Supertest](#testing))
 
 ---
 

@@ -1,20 +1,20 @@
-# Imagen base
+# Base image
 FROM node:18
 
-# Directorio de trabajo
+# Work Directory
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
+# Copy package.json
 COPY package*.json ./
 
-# Instalar dependencias
+# Install dependencies
 RUN npm install
 
-# Copiar el resto de la app
+# Copy the rest of the app
 COPY . .
 
-# Exponer el puerto
+# Expose the port
 EXPOSE 8080
 
-# Comando para iniciar la app
+# COMMAND TO START THE APP
 CMD ["npm", "run", "prod"]
