@@ -773,15 +773,17 @@ La aplicación ha sido diseñada para que los tests de integración utilicen dir
 
 Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
-### 🚀 Imagenes Docker
+### 🖼️ Imagenes Docker
 
-> 📦 Las imagenes están publicadas en Docker Hub:
+📦 Las imagenes están publicadas en Docker Hub:
 
 > 👉 MODO DESARROLLO: [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
 
 > 👉 MODO PRODUCCION: [hmfarias/adoptme-app-prod](https://hub.docker.com/r/hmfarias/adoptme-app-prod)
 
-Para descargarlas, ejecuta el siguiente comando:
+### ⤵️ Descarga de las imágenes
+
+Ejecuta el siguiente comando:
 
 ```bash
 docker pull hmfarias/adoptme-app
@@ -793,29 +795,29 @@ o bien para la versión de producción:
 docker pull hmfarias/adoptme-app-prod
 ```
 
-### 📦 Requisitos previos para ejecutar la aplicación
+### 🚀 Ejecución de la aplicación
+
+#### 1- ⚙️ Requisitos previos
 
 - Tener [Docker instalado](https://docs.docker.com/get-docker/)
 - Tener un archivo `.env` con tu configuración ( Consulta la configuración de credenciales en la sección [CREDENCIALES (.env)](#credenciales).)
 
----
-
-### 🚀 Cómo ejecutar el contenedor
+#### 2- 🚀 Ejecutar el contenedor
 
 Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el siguiente comando:
 
-Para ejecutar el contenedor en modo producción:
-
-```bash
-docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
-docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
-```
-
-O bien para la versión de desarrollo:
+Modo desarrollo:
 
 ```bash
 docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
 docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app
+```
+
+Modo producción:
+
+```bash
+docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
+docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
 ```
 
 Este comando:
@@ -824,7 +826,7 @@ Este comando:
 - Carga tus variables de entorno desde el archivo.env.
 - Ejecuta automáticamente la app.
 
-#### ⚠️ Para detener el contenedor y liberar el puerto para futuro uso:
+#### 3- ⚠️ Detener el contenedor y liberar el puerto para futuro uso:
 
 **Paso 1: 🛑 Detener el contenedor:**
 
@@ -834,7 +836,7 @@ Presiona `Ctrl + C` tres veces en la terminal donde se está ejecutando el conte
 docker stop adoptme-app
 ```
 
-o biena abre otra terminal y ejecuta el mismo comando.
+o bien, abre otra terminal y ejecuta el mismo comando.
 
 ```bash
 docker stop adoptme-app
