@@ -791,6 +791,8 @@ Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 
 Ejecutá uno de los siguientes comandos (o ambos si lo deseas):
 
+Para modo desarrollo:
+
 ```bash
 docker pull hmfarias/adoptme-app
 ```
