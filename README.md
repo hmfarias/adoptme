@@ -4,7 +4,7 @@
   <img src="https://github.com/hmfarias/adoptme/blob/main/src/public/img/banner.png" width="600"/>
 </p>
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="menu"></a>
 
@@ -29,7 +29,7 @@
 - [🟠 Postman Collection para hacer las pruebas](#postman)
 - [📞 Contacto](#contacto)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="intro"></a>
 
@@ -52,7 +52,7 @@ Este repositorio está listo para desarrollo, testing, o despliegue en producci�
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="revision-del-codigo"></a>
 
@@ -197,8 +197,7 @@ const deleteUser = async (req, res) => {
 
 [🔝 Volver al menú](#menu)
 
----
-
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <a name="populate"></a>
 
 ### 🧬 POPULATE
@@ -265,7 +264,7 @@ Esta asociación es esencial para representar de forma efectiva las relaciones e
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="credenciales"></a>
 
@@ -295,7 +294,7 @@ Este archivo a su vez es procesado por `/src/config/config.js`, que es el módul
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="instalacionlocal"></a>
 
@@ -371,7 +370,7 @@ Antes de instalar la aplicación, asegúrate de contar con:
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="comander"></a>
 
@@ -466,7 +465,7 @@ node src/app.js -p 5000 --mode development
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="funcionalidad-de-mocking"></a>
 
@@ -574,7 +573,7 @@ Este sistema permite generar datos falsos para pruebas o poblar la base de datos
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="logger"></a>
 
@@ -693,7 +692,7 @@ if (!user) {
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="swagger"></a>
 
@@ -720,7 +719,7 @@ Se debe remplazar `[PORT]` con el número de puerto en el que se está ejecutand
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="testing"></a>
 
@@ -783,7 +782,7 @@ test/
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="docker"></a>
 
@@ -798,6 +797,8 @@ Esta aplicación puede ejecutarse fácilmente en un contenedor usando Docker.
 > 👉 Modo desarrollo: [hmfarias/adoptme-app](https://hub.docker.com/r/hmfarias/adoptme-app)
 
 > 👉 Modo producción: [hmfarias/adoptme-app-prod](https://hub.docker.com/r/hmfarias/adoptme-app-prod)
+
+---
 
 ### ⤵️ Descarga de las imágenes
 
@@ -814,6 +815,8 @@ o bien para la versión de producción:
 ```bash
 docker pull hmfarias/adoptme-app-prod
 ```
+
+---
 
 ### 🚀 Ejecución de la aplicación
 
@@ -852,6 +855,8 @@ http://localhost:8080/api/docs
 
 O bien, usar la colección de **Postman** incluida en este repositorio, 👉 Ver sección 🧪 [Postman](#postman) para más información.
 
+---
+
 #### 3- 🛑 Detener el contenedor y liberar el puerto:
 
 Puedes presionar `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor, o bien, abrir otra terminal.
@@ -861,6 +866,8 @@ Luego ejecuta el siguiente comando:
 ```bash
 docker rm -f adoptme-app
 ```
+
+---
 
 > ### 🧪 Para correr tests
 >
@@ -880,7 +887,7 @@ docker rm -f adoptme-app
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="postman"></a>
 
@@ -896,7 +903,7 @@ Haz clic derecho en el enlace anterior y elige **"Guardar enlace como..."** o pr
 
 [🔝 Volver al menú](#menu)
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 <a name="contacto"></a>
 
