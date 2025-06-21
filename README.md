@@ -834,7 +834,7 @@ Este comando:
 - Carga tus variables de entorno desde el archivo.env.
 - Ejecuta automáticamente la app.
 
-A partir de ahora, puedes acceder a la aplicación en tu navegador a través del puerto 8080 y visitar la documentacion de la API:
+A partir de ahora, puedes acceder a la aplicación en tu navegador a través del puerto 8080 y visitar por ejemplo la documentacion de la API:
 
 ```
 http://localhost:8080/api/docs

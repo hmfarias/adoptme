@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"users\": 50,\n  \"pets\": 100\n}",
+							"raw": "{\n  \"users\": 5,\n  \"pets\": 10\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -33,25 +33,6 @@
 								"api",
 								"mocks",
 								"generateData"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/users",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users"
 							]
 						}
 					},
@@ -75,7 +56,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/mocks//mockingusers/10",
+							"raw": "localhost:8080/api/mocks/mockingusers?quantity=5",
 							"host": [
 								"localhost"
 							],
@@ -83,9 +64,13 @@
 							"path": [
 								"api",
 								"mocks",
-								"",
-								"mockingusers",
-								"10"
+								"mockingusers"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -97,7 +82,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/mocks//mockingpets/10",
+							"raw": "localhost:8080/api/mocks/mockingpets?quantity=10",
 							"host": [
 								"localhost"
 							],
@@ -105,16 +90,380 @@
 							"path": [
 								"api",
 								"mocks",
-								"",
-								"mockingpets",
-								"10"
+								"mockingpets"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logger",
+			"item": [
+				{
+					"name": "Test loggers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/loggerTest",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"loggerTest"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get pets",
+					"name": "Test boom - error sin try catch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/loggerTest/boom",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"loggerTest",
+								"boom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test fail - promesa rechazada sin catch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/loggerTest/fail",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"loggerTest",
+								"fail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test ruta inexistente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/loggerTest/wrongRoute",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"loggerTest",
+								"wrongRoute"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sessions",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"New\",\n\t\"last_name\": \"User\",\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"123\"\n        \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/sessions/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"123\"\n        \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/sessions/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sessions/current",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unprotected Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"123\"\n        \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/sessions/unprotectedLogin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"unprotectedLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unprotected Current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sessions/unprotectedCurrent",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"unprotectedCurrent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/684ae0d443986cebb325e0b6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"684ae0d443986cebb325e0b6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/684ae0d443986cebb325e0b6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"684ae0d443986cebb325e0b6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"updated2\",\n\t\"last_name\": \"updated2\",\n    \"email\": \"UPDATED@TEST2.com\"\n        \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/684ae0d443986cebb325e0b6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"684ae0d443986cebb325e0b6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pets",
+			"item": [
+				{
+					"name": "POST withimage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Luna",
+									"type": "text"
+								},
+								{
+									"key": "specie",
+									"value": "dog",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2021-08-15",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1f0496ca-da80-4250-b5f0-87b7b001a033"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pets/withimage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"withimage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all pets",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -127,6 +476,168 @@
 							"path": [
 								"api",
 								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get pet by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/pets/684ae0d443986cebb325e0d1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"684ae0d443986cebb325e0d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a pet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/pets/68533b1c7e3bb480e96dd61c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"68533b1c7e3bb480e96dd61c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Luna new\",\n  \"specie\": \"dog\",\n  \"birthDate\": \"2020-08-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/pets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a pet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"lunaupdated\"\n\n        \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/pets/684ded6b01deadab",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"684ded6b01deadab"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Adoptions",
+			"item": [
+				{
+					"name": "Get adoptions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/adoptions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get adoption by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/adoptions/684ae0d443986cebb325e0b6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adoptions",
+								"684ae0d443986cebb325e0b6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create adoption",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/adoptions/684ae0d443986cebb325e0b6/684ae0d443986cebb325e0c1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adoptions",
+								"684ae0d443986cebb325e0b6",
+								"684ae0d443986cebb325e0c1"
 							]
 						}
 					},
