@@ -841,6 +841,7 @@ http://localhost:8080/api/docs
 ```
 
 O bien, usar la colección de **Postman** incluida en este repositorio.
+
 👉 Ver sección 🧪 [Postman](#postman) para más información.
 
 #### 3- 🛑 Detener el contenedor y liberar el puerto:
