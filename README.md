@@ -828,11 +828,13 @@ Este comando:
 
 **Paso 1: 🛑 Detener el contenedor:**
 
-- Puedes detener el contenedor de dos maneras:
+Presiona `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor y ejecuta el siguiente comando:
 
-  **Opción 1:** Presiona `Ctrl + C` tres veces en la terminal donde se está ejecutando el contenedor.
+```bash
+docker stop adoptme-app
+```
 
-  **Opción 2:** Abre otra terminal y ejecuta el siguiente comando:
+o biena abre otra terminal y ejecuta el mismo comando.
 
 ```bash
 docker stop adoptme-app
@@ -844,7 +846,7 @@ docker stop adoptme-app
 docker rm adoptme-app
 ```
 
-Esto finalizará el contenedor y liberará el puerto asignado.
+Estos dos pasos detendrán el contenedor y liberarán el puerto asignado.
 
 ---
 
