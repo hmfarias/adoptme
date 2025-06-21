@@ -817,14 +817,12 @@ Ubicado en la misma carpeta donde se encuentra el archivo .env, ejecuta el sigui
 Modo desarrollo:
 
 ```bash
-docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app
 docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app
 ```
 
 Modo producción:
 
 ```bash
-docker run -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
 docker run --name adoptme-app -p 8080:8080 --env-file .env hmfarias/adoptme-app-prod
 ```
 
